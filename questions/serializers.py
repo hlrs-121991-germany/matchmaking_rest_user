@@ -3,19 +3,6 @@ from questions.models import Question
 from questions.models import Answer
 from questions.models import UserAnswer
 
-class QuestionSerializer(serializers.ModelSerializer):
-#    answers = AnswerSerializer(many=True)
-    class Meta:
-        model = Question
-        fields = [
-            'id',
-            'text',
-#            'answers',
-#            'active',
-#            'draft',
-#            'timestamp'
-        ]
-
 
 # serializers.Serializer to serialize the QuestionSerializer
 #
@@ -38,12 +25,12 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class AnswerSerializer(serializers.ModelSerializer):
-    question = QuestionSerializer(many=False)
+#    question = QuestionSerializer(many=False)
     class Meta:
         model = Answer
         fields = [
             'id',
-            'question',
+#            'question',
             'text',
 #            'active',
 #            'draft',
@@ -51,7 +38,37 @@ class AnswerSerializer(serializers.ModelSerializer):
         ]
         depth = 2
 
+class QuestionSerializer(serializers.ModelSerializer):
+    answers = AnswerSerializer(many=True)
+    class Meta:
+        model = Question
+        fields = [
+            'id',
+            'text',
+            'answers',
+#            'active',
+#            'draft',
+#            'timestamp'
+        ]
+
+class CustomQuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = [
+            'id',
+            'text',
+#            'answers',
+#            'active',
+#            'draft',
+#            'timestamp'
+        ]
+
+
+
 class UserAnswerSerializer(serializers.ModelSerializer):
+    my_answer = AnswerSerializer(many=False)
+    their_answer = AnswerSerializer(many=False)
+    question = CustomQuestionSerializer(many=False)
     class Meta:
         model = UserAnswer
         fields = [

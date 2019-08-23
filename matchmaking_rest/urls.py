@@ -30,5 +30,5 @@ urlpatterns = [
     url(r'^match-api/v0/users$', user_views.user_list),
     url(r'^match-api/v0/users/(?P<pk>[0-9]+)$', user_views.user_detail),
 
-    url(r'^match-api/v0/admin', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
 ]

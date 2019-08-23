@@ -12,7 +12,7 @@ class QuestionManager(models.Manager):
 
 class Question(models.Model):
     text = models.TextField()
-#    answers = models.ManyToManyField('Answer')
+    answers = models.ManyToManyField('Answer')
     active = models.BooleanField(default=True)
     draft = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -24,7 +24,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question)
+#    question = models.ForeignKey(Question)
     text = models.CharField(max_length=120)
     active = models.BooleanField(default=True)
     draft = models.BooleanField(default=False)

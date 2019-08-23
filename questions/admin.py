@@ -1,16 +1,22 @@
 from django.contrib import admin
 from questions.models import Question, Answer, UserAnswer
 
-class AnswerTabularInline(admin.TabularInline):
-    model = Answer
+class AnswerMemberInline(admin.TabularInline):
+    model = Question.answers.through
+
+class AnswerAdmin(admin.ModelAdmin):
+    inlines = [
+        AnswerMemberInline,
+    ]
 
 class QuestionAdmin(admin.ModelAdmin):
-    inlines = [AnswerTabularInline]
-    class Meta:
-        model = Question
+    inlines = [ AnswerMemberInline ]
+    exclude = ('answers',)
+#    class Meta:
+#        model = Question
 
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(Answer)
+admin.site.register(Answer, AnswerAdmin)
 admin.site.register(UserAnswer)
 
 # Register your models here.
