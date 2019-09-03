@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.auth.models import User as authUser
+from jsonfield import JSONField
 
 User = settings.AUTH_USER_MODEL
 
@@ -19,8 +21,12 @@ class UserLikeManager(models.Manager):
         return mutual_users
 
 class UserLike(models.Model):
-    user = models.OneToOneField(User, related_name='liker')
-    liked_users = models.ManyToManyField(User, related_name='liked_users', blank=True)
+    user = models.OneToOneField(authUser, related_name='user')
+    liked_users = models.ManyToManyField(authUser, related_name='liked_users', blank=True)
+#    add = JSONField(load_kwargs={'object_pairs_hook': collections.OrderedDict})
+#    remove = JSONField(load_kwargs={'object_pairs_hook': collections.OrderedDict})
+    add = JSONField()
+    remove = JSONField()
 
     objects = UserLikeManager()
 

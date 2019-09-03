@@ -2,7 +2,7 @@ from rest_framework import serializers
 from questions.models import Question
 from questions.models import Answer
 from questions.models import UserAnswer
-
+from django.contrib.auth.models import User as authUser
 
 # serializers.Serializer to serialize the QuestionSerializer
 #
@@ -51,6 +51,32 @@ class QuestionSerializer(serializers.ModelSerializer):
 #            'timestamp'
         ]
 
+class QuestionSerializerPost(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = [
+            'id',
+            'text',
+            'answers',
+#            'active',
+#            'draft',
+#            'timestamp'
+        ]
+
+class QuestionSerializerPut(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = [
+            'id',
+            'text',
+#            'ans-add',
+#            'ans-remove',
+#            'active',
+#            'draft',
+#            'timestamp'
+        ]
+
+
 class CustomQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
@@ -64,8 +90,17 @@ class CustomQuestionSerializer(serializers.ModelSerializer):
         ]
 
 
+class CurrentUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = authUser
+        fields = [
+            'id',
+            'username',
+        ]
 
-class UserAnswerSerializer(serializers.ModelSerializer):
+
+class UserAnswerSerializerGet(serializers.ModelSerializer):
+    user = CurrentUserSerializer(many=False)
     my_answer = AnswerSerializer(many=False)
     their_answer = AnswerSerializer(many=False)
     question = CustomQuestionSerializer(many=False)
@@ -77,11 +112,25 @@ class UserAnswerSerializer(serializers.ModelSerializer):
             'question',
             'my_answer',
             'my_answer_importance',
-            'my_points',
+#            'my_points',
             'their_answer',
             'their_importance',
-            'their_points',
+#            'their_points',
 #            'timestamp'
         ]
 
-
+class UserAnswerSerializerPost(serializers.ModelSerializer):
+    class Meta:
+        model = UserAnswer
+        fields = [
+            'id',
+            'user',
+            'question',
+            'my_answer',
+            'my_answer_importance',
+#            'my_points',
+            'their_answer',
+            'their_importance',
+#            'their_points',
+#            'timestamp'
+        ]

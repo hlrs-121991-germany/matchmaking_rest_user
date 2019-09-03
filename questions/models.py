@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from django.contrib.auth.models import User as authUser
 
 class QuestionManager(models.Manager):
     def get_unanswered(self, user):
@@ -26,6 +27,8 @@ class Question(models.Model):
 class Answer(models.Model):
 #    question = models.ForeignKey(Question)
     text = models.CharField(max_length=120)
+#    ans-add = JSONField()
+#    ans-remove = JSONField()
     active = models.BooleanField(default=True)
     draft = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -44,7 +47,7 @@ LEVELS = (
 
 
 class UserAnswer(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(authUser)
     question = models.ForeignKey(Question)
     my_answer = models.ForeignKey(Answer, related_name='user_answer')
     my_answer_importance = models.CharField(max_length=50, choices=LEVELS)

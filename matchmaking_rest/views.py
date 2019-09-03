@@ -5,9 +5,6 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 #from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
-from likes.models import UserLike
-from likes.serializers import UserLikeSerializer
-from likes.serializers import CurrentUserSerializer
 
 
 class JSONResponse(HttpResponse):

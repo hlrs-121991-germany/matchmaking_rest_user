@@ -3,9 +3,21 @@ from matches.models import Match
 from matches.models import PositionMatch
 from matches.models import EmployerMatch
 from matches.models import LocationMatch
+from django.contrib.auth.models import User as authUser
+
+
+class CurrentUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = authUser
+        fields = [
+            'id',
+            'username',
+        ]
 
 
 class MatchSerializer(serializers.ModelSerializer):
+    user_a = CurrentUserSerializer(many=False)
+    user_b = CurrentUserSerializer(many=False)
     class Meta:
         model = Match
         fields = [
@@ -14,8 +26,6 @@ class MatchSerializer(serializers.ModelSerializer):
             'user_b',
             'match_decimal',
             'questions_answered',
-            'timestamp',
-            'updated',
         ]
 
 class PositionMatchSerializer(serializers.ModelSerializer):

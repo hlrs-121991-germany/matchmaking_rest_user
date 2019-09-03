@@ -39,7 +39,6 @@ def get_match(user_a, user_b):
     if questions_in_common > 0:
         a_decimal = a_points / Decimal(a_total_points)
         b_decimal = b_points / Decimal(b_total_points)
-        print(b_decimal, a_decimal)
         if a_decimal == 0:
             a_decimal = 0.000001
         if b_decimal == 0:

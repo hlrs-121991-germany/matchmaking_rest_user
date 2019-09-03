@@ -12,6 +12,7 @@ class AnswerAdmin(admin.ModelAdmin):
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ AnswerMemberInline ]
     exclude = ('answers',)
+#    exclude = ('answers','ans-add', 'ans-remove')
 #    class Meta:
 #        model = Question
 

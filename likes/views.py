@@ -1,13 +1,17 @@
+import collections
 from django.shortcuts import render
+from annoying.functions import get_object_or_None
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 #from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from likes.models import UserLike
-from likes.serializers import UserLikeSerializer
-from likes.serializers import CurrentUserSerializer
+from likes.serializers import (UserLikeSerializerGet, CurrentUserSerializer,
+                               UserLikeSerializerPost)
 
 
 class JSONResponse(HttpResponse):
@@ -15,6 +19,11 @@ class JSONResponse(HttpResponse):
         content = JSONRenderer().render(data)
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
+
+def JSONError(message=None, code=404, status=status.HTTP_404_NOT_FOUND):
+    error_msg = { "error": {"code": code, "message": message} }
+    error_data = collections.OrderedDict(error_msg)
+    return JSONResponse(error_data, status=status)
 
 #       print(user_likes_serializer.data)
 #        print(type(user_likes_serializer.data))
@@ -33,50 +42,159 @@ class JSONResponse(HttpResponse):
 @csrf_exempt
 def user_like_list(request):
     if request.method == 'GET':
-        print(request.data)
-        user_likes = UserLike.objects.all()
-        for user_like in user_likes:
-            print(user_like.user, user_like.liked_users)
-        user_likes = UserLike.objects.all()
-        user_likes_serializer = UserLikeSerializer(user_likes, many=True)
-        print(type(user_likes_serializer.data))
-        return JSONResponse(user_likes_serializer.data)
+        username_list = request.GET.getlist('user')
+        user_likes = None
+        user_likes_serializer = None
+        if (len(username_list) == 0):
+            user_likes = UserLike.objects.all()
+            user_likes_serializer = UserLikeSerializerGet(user_likes, many=True)
+            return JSONResponse(user_likes_serializer.data)
+
+        user = None
+        User = get_user_model()
+        try:
+            user = int(username_list[0])
+            user = get_object_or_None(User, id=user)
+        except ValueError:
+            user = get_object_or_None(User, username=username_list[0])
+        if user is None:
+            return JSONError(message="User ID not Found", code=404)
+
+        try:
+            user_likes = UserLike.objects.filter(user=user.id)
+        except UserLike.DoesNotExist:
+            return JSONError(message=
+                             "User is not found in the Likes table",
+                             code=404)
+        if not user_likes.exists():
+            return JSONError(message=
+                             "User is not found in the Likes table",
+                             code=404)
+
+        likes_serializer = UserLikeSerializerGet(user_likes, many=True)
+        if likes_serializer:
+            return JSONResponse(likes_serializer.data)
+        else:
+            return JSONError(message= "Matches not Found", code=404)
+
     elif request.method == 'POST':
-        user_like_data = JSONParser().parse(request)
-        like_data = {"user": user_like_data[u'user'],                   \
-                     "liked_users": user_like_data[u'liked_users']}
-        print(user_like_data, like_data)
-        user_like_serializer = UserLikeSerializer(data=user_like_data)
-        print(user_like_serializer)
-        like_serializer = UserLikeSerializer(data=like_data)
-        print(like_serializer)
-        print(like_serializer.is_valid())
-        if user_like_serializer.is_valid():
-            user_like_serializer.save()
-            return JSONResponse(user_like_serializer.data,
-                                status=status.HTTP_201_CREATED)
-        return JSONResponse(user_like_serializer.errors,
-                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            user_like_data = JSONParser().parse(request)
+            if (("user" not in user_like_data) or
+                    ("liked_users" not in user_like_data) or
+                    (not isinstance(user_like_data["user"], int)) or
+                    (not isinstance(user_like_data["liked_users"], list)) or
+                    (not all(isinstance(x, int) for x in
+                             user_like_data["liked_users"]))):
+                raise ValueError('Key: Value is wrong in the data')
+            user_like_serializer = UserLikeSerializerPost(data=user_like_data)
+            if user_like_serializer.is_valid():
+                user_like_serializer.save()
+                return JSONResponse(user_like_serializer.data,
+                                    status=status.HTTP_201_CREATED)
+        except ValueError, ve:
+            print(ve)
+            return JSONError(message="Request data is not valid",
+                             code=400, status=status.HTTP_400_BAD_REQUEST)
+        except Exception, e:
+            print(e)
+            return JSONError(message="Object is already created for the user",
+                             code=400, status=status.HTTP_400_BAD_REQUEST)
 
 
 @csrf_exempt
 def user_like_detail(request, pk):
+    user_like = None
+    user_id = -1
     try:
-        user_like = UserLike.objects.get(user=pk)
+        user_id = int(pk)
+        User = get_user_model()
+        user_details = get_object_or_None(User, id=pk)
+    except ValueError:
+        User = get_user_model()
+        user_details = get_object_or_None(User, username=pk)
+    if user_details is not None:
+        user_id = user_details.id
+    else:
+        return JSONError(message="User ID not found",
+                         code=404)
+    print(user_id)
+    try:
+        user_like = UserLike.objects.get(user=user_details)
     except UserLike.DoesNotExist:
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+        return JSONError(message="User is not found in the likes table",
+                         code=404)
     if request.method == 'GET':
-        user_like_serializer = UserLikeSerializer(user_like)
-        return JSONResponse(user_like_serializer.data)
-    elif request.method == 'PUT':
-        user_like_data = JSONParser().parse(request)
-        user_like_serializer = UserLikeSerializer(user_like,
-                                                      data=user_like_data)
-        if user_like_serializer.is_valid():
-            user_like_serializer.save()
+        if user_like is not None:
+            user_like_serializer = UserLikeSerializerGet(user_like, many=False)
             return JSONResponse(user_like_serializer.data)
-        return JSONResponse(user_like_serializer.errors,
-                            status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return JSONError(message="User ID not found",
+                             code=404)
+    elif request.method == 'PUT':
+        user_add = []
+        user_rmv = []
+        if user_like is None:
+            return JSONError(message="User ID not found",
+                             code=404)
+        try:
+            user_like_data = JSONParser().parse(request)
+            if (("add" not in user_like_data) and
+                    ("remove" not in user_like_data)):
+                raise ValueError('Required key is not found in request data')
+            User = get_user_model()
+            if ("add" in user_like_data):
+                if ((not isinstance(user_like_data["add"], (str, unicode))) or
+                        (not (all(isinstance(int(x), int) for x in
+                                 user_like_data["add"].split(","))))):
+                    raise ValueError('Value is wrong in the "add" data')
+                else:
+                    user_add = user_like_data["add"].split(",")
+            if ("remove" in user_like_data):
+                if ((not isinstance(user_like_data["remove"],
+                                    (str, unicode))) or
+                        (not all(isinstance(int(x), int) for x in
+                                 user_like_data["remove"].split(",")))):
+                    raise ValueError('Value is wrong in the "remove" data')
+                else:
+                    user_rmv = user_like_data["remove"].split(",")
+
+
+            for user_r in user_rmv:
+                user_remove = get_object_or_None(User, pk=user_r)
+                if user_remove is None:
+                    raise ValueError("{0} is not valid in 'remove'".format(user_r))
+            for user_a in user_add:
+                user_adding = get_object_or_None(User, pk=user_a)
+                if user_adding is None:
+                    raise ValueError("{0} is not valid in 'add'".format(user_a))
+
+            for user_r in user_rmv:
+                user_remove = User.objects.get(pk=user_r)
+                user_like.liked_users.remove(user_remove)
+            for user_a in user_add:
+                user_adding = User.objects.get(pk=user_a)
+                user_like.liked_users.add(user_adding)
+            user_like.save()
+
+            user_like_serializer = UserLikeSerializerGet(user_like, many=False)
+            return JSONResponse(user_like_serializer.data)
+        except ValueError, ve:
+            print(ve)
+            return JSONError(message="Request data is not valid",
+                             code=400, status=status.HTTP_400_BAD_REQUEST)
+        except Exception, e:
+            print(e)
+            return JSONError(message="Object is not updated",
+                             code=403, status=status.HTTP_403_FORBIDDEN)
     elif request.method == 'DELETE':
-        user_like.delete()
-        return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+        if user_like is None:
+            return JSONError(message="User ID not found",
+                             code=404)
+        else:
+            try:
+                user_like.delete()
+                return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+            except:
+                return JSONError(message="Object is not deleted",
+                                 code=403, status=status.HTTP_403_FORBIDDEN)

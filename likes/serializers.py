@@ -14,7 +14,7 @@ class CurrentUserSerializer(serializers.ModelSerializer):
             'username',
         ]
 
-class UserLikeSerializer(serializers.ModelSerializer):
+class UserLikeSerializerGet(serializers.ModelSerializer):
     user = CurrentUserSerializer(many=False)
     #user = serializers.PrimaryKeyRelatedField(queryset=User)
     liked_users = CurrentUserSerializer(many=True)
@@ -26,3 +26,17 @@ class UserLikeSerializer(serializers.ModelSerializer):
             'liked_users',
         ]
         depth = 2
+
+class UserLikeSerializerPost(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(queryset=authUser.objects.all(), read_only=False)
+    liked_users = serializers.PrimaryKeyRelatedField(queryset=authUser.objects.all(), many=True,
+                                                     read_only=False)
+
+    class Meta:
+        model = UserLike
+        fields = [
+            'user',
+            'liked_users',
+        ]
+        #depth = 2
+

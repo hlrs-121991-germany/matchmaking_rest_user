@@ -25,7 +25,8 @@ SECRET_KEY = 'wze)8!oa%*&hyjn17rmk-m*-rm=wgm^%f@^-ar2tqtd3lx^_^3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'hidalgo-portal.hidalgo-project.eu', '141.58.0.230']
 
 
 # Application definition
