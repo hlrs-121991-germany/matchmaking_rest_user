@@ -5,11 +5,13 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework import status
+from rest_framework.decorators import api_view
 from questions.models import Question
 from questions.models import Answer
 from questions.models import UserAnswer
-from django.contrib.auth.models import User as authUser
-from django.contrib.auth import get_user_model
+#from django.contrib.auth.models import User as authUser
+from users.models import User as authUser
+#from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from annoying.functions import get_object_or_None
 from questions.serializers import (QuestionSerializer, AnswerSerializer,
@@ -30,6 +32,7 @@ class JSONResponse(HttpResponse):
 
 
 @csrf_exempt
+@api_view(['GET', 'POST'])
 def question_list(request):
     if request.method == 'GET':
         questions = Question.objects.all()
@@ -53,6 +56,7 @@ def question_list(request):
 
 
 @csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
 def question_detail(request, pk):
     try:
         question_id = int(pk)
@@ -178,6 +182,7 @@ def question_answer_detail(request, pk):
 
 
 @csrf_exempt
+@api_view(['GET', 'POST'])
 def answer_list(request):
     if request.method == 'GET':
         answers = Answer.objects.all()
@@ -203,6 +208,7 @@ def answer_list(request):
 
 
 @csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
 def answer_detail(request, pk):
     try:
         answer_id = int(pk)
@@ -238,6 +244,7 @@ def answer_detail(request, pk):
 
 
 @csrf_exempt
+@api_view(['GET', 'POST'])
 def user_answer_list(request):
     if request.method == 'GET':
         username_list = request.GET.getlist('user')
@@ -252,8 +259,8 @@ def user_answer_list(request):
                 if not user_answers.exists():
                     return JSONError(message= "User ID not Found", code=404)
             except ValueError:
-                User = get_user_model()
-                user = get_object_or_None(User, username=username_list[0])
+                #User = get_user_model()
+                user = get_object_or_None(authUser, username=username_list[0])
                 if user is None:
                     return JSONError(message= "User ID not Found", code=404)
                 user_answers = UserAnswer.objects.filter(user=user.id)
@@ -272,8 +279,8 @@ def user_answer_list(request):
                 return JSONError(message="'user' value is not an Integer",
                                  code=400, status=status.HTTP_400_BAD_REQUEST)
             else:
-                User = get_user_model()
-                user_obj = get_object_or_None(User, id=int(user_answer_data['user']))
+                #User = get_user_model()
+                user_obj = get_object_or_None(authUser, id=int(user_answer_data['user']))
                 if user_obj is None:
                     return JSONError(message="'user' object is not found",
                                      code=400, status=status.HTTP_400_BAD_REQUEST)
@@ -342,6 +349,7 @@ def user_answer_list(request):
 
 
 @csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
 def user_answer_detail(request, pk):
     try:
         usr_ans_id = int(pk)
@@ -363,8 +371,8 @@ def user_answer_detail(request, pk):
                 return JSONError(message="'user' value is not an Integer",
                                  code=400, status=status.HTTP_400_BAD_REQUEST)
             else:
-                User = get_user_model()
-                user_obj = get_object_or_None(User, id=int(user_answer_data['user']))
+                #User = get_user_model()
+                user_obj = get_object_or_None(authUser, id=int(user_answer_data['user']))
                 if user_obj is None:
                     return JSONError(message="'user' object is not found",
                                      code=400, status=status.HTTP_400_BAD_REQUEST)

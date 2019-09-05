@@ -5,9 +5,28 @@ from matches import views as match_views
 from likes import views as like_views
 from users import views as user_views
 from . import views as root_views
+from rest_framework.schemas import get_schema_view
+from rest_framework_raml.renderers import RAMLRenderer, RAMLDocsRenderer
+from rest_framework_swagger.views import get_swagger_view
+
+title='Matchmaking REST API'
+
+base_schema_view = get_schema_view(title=title)
+
+swagger_schema_view = get_swagger_view(
+    title=title,
+)
+
+raml_schema_view = get_schema_view(
+    title=title,
+    renderer_classes=[RAMLRenderer, RAMLDocsRenderer]
+)
 
 urlpatterns = [
-    url(r'^$', root_views.api_root_list),
+    url(r'^$', raml_schema_view),
+    #url(r'^$', base_schema_view),
+    #url(r'^$', swagger_schema_view),
+    #url(r'^$', root_views.api_root_list),
     url(r'^match-api$',
         root_views.api_match_list),
     url(r'^match-api/v0$',
@@ -50,7 +69,7 @@ urlpatterns = [
         like_views.user_like_detail),
     url(r'^match-api/v0/users$',
         user_views.user_list),
-    url(r'^match-api/v0/users/(?P<pk>[0-9]+)$',
+    url(r'^match-api/v0/users/(?P<pk>[a-zA-Z0-9_.-]+)$',
         user_views.user_detail),
 
     url(r'^admin101/', include(admin.site.urls)),

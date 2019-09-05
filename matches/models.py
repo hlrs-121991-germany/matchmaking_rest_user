@@ -8,15 +8,16 @@ from django.db.models.signals import post_save, pre_save
 
 from matches.signals import user_matches_update
 from matches.utils import get_match
+from users.models import User as authUser
 
-User = settings.AUTH_USER_MODEL
+#User = settings.AUTH_USER_MODEL
 
 class Job(models.Model):
     text = models.CharField(max_length=120, unique=True)
     slug = models.SlugField()
     active = models.BooleanField(default=True) #shown
-    flagged = models.ManyToManyField(User, blank=True) #warning
-    #users = modeles.ManyToManyField(User, null=True, blank=True)
+    flagged = models.ManyToManyField(authUser, blank=True) #warning
+    #users = modeles.ManyToManyField(authUser, null=True, blank=True)
 
     def __unicode__(self):
         return self.text
@@ -32,7 +33,7 @@ class Location(models.Model):
     name = models.CharField(max_length=250, unique=True)
     slug = models.SlugField()
     active = models.BooleanField(default=True) #shown
-    flagged = models.ManyToManyField(User, blank=True)
+    flagged = models.ManyToManyField(authUser, blank=True)
 
     def __unicode__(self): #__str__(self):
         return self.name
@@ -138,9 +139,9 @@ class MatchManager(models.Manager):
 
 
 class Match(models.Model):
-    user_a = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user_a = models.ForeignKey(authUser,
                                related_name='match_user_a')
-    user_b = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user_b = models.ForeignKey(authUser,
                                related_name='match_user_b')
     match_decimal = models.DecimalField(decimal_places=8, max_digits=16,
                                         default=0.00)
@@ -215,7 +216,7 @@ class PositionMatchManager(models.Manager):
 
 
 class PositionMatch(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(authUser)
     job = models.ForeignKey(Job)
     hidden = models.BooleanField(default=False)
     liked = models.NullBooleanField()
@@ -240,7 +241,7 @@ class PositionMatch(models.Model):
 
 
 class EmployerMatch(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(authUser)
     employer = models.ForeignKey(Employer)
     hidden = models.BooleanField(default=False)
     liked = models.NullBooleanField()
@@ -255,7 +256,7 @@ class EmployerMatch(models.Model):
 
 
 class LocationMatch(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(authUser)
     location = models.ForeignKey(Location)
     hidden = models.BooleanField(default=False)
     liked = models.NullBooleanField()

@@ -2,7 +2,8 @@ from rest_framework import serializers
 from questions.models import Question
 from questions.models import Answer
 from questions.models import UserAnswer
-from django.contrib.auth.models import User as authUser
+#from django.contrib.auth.models import User as authUser
+from users.models import User as authUser
 
 # serializers.Serializer to serialize the QuestionSerializer
 #

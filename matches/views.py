@@ -1,12 +1,14 @@
 import collections
 from django.shortcuts import render, get_object_or_404
 from annoying.functions import get_object_or_None
-from django.contrib.auth import get_user_model
+#from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework import status
+from users.models import User as authUser
 from matches.models import Match
 from matches.models import PositionMatch
 from matches.models import EmployerMatch
@@ -31,6 +33,7 @@ class JSONResponse(HttpResponse):
 
 
 @csrf_exempt
+@api_view(['GET'])
 def match_list(request):
     if request.method == 'GET':
         username_list = request.GET.getlist('user')
@@ -43,8 +46,8 @@ def match_list(request):
         else:
             match_update = True
             print("match_update is False")
-            User = get_user_model()
-            UserQuerySet = User.objects.all()
+            #User = get_user_model()
+            UserQuerySet = authUser.objects.all()
             for user_a in UserQuerySet:
                 for user_b in UserQuerySet:
                     if (user_a == user_b):
@@ -61,21 +64,21 @@ def match_list(request):
         if (len(username_list) == 2):
             user_a = None
             user_b = None
-            User = get_user_model()
+            #User = get_user_model()
             try:
                 user_a = int(username_list[0])
-                user_a = get_object_or_None(User, id=user_a)
+                user_a = get_object_or_None(authUser, id=user_a)
             except ValueError:
-                user_a = get_object_or_None(User, username=username_list[0])
+                user_a = get_object_or_None(authUser, username=username_list[0])
             if user_a is None:
                 return JSONError(message= "First User ID not Found", code=404)
             user_a=user_a.id
 
             try:
                 user_b = int(username_list[1])
-                user_b = get_object_or_None(User, id=user_b)
+                user_b = get_object_or_None(authUser, id=user_b)
             except ValueError:
-                user_b = get_object_or_None(User, username=username_list[1])
+                user_b = get_object_or_None(authUser, username=username_list[1])
             if user_b is None:
                 return JSONError(message= "Second User ID not Found", code=404)
             user_b = user_b.id
@@ -91,12 +94,12 @@ def match_list(request):
             matches_serializer = MatchSerializer(matches, many=False)
         elif (len(username_list) == 1):
             user_a = None
-            User = get_user_model()
+            #User = get_user_model()
             try:
                 user_a = int(username_list[0])
-                user_a = get_object_or_None(User, id=user_a)
+                user_a = get_object_or_None(authUser, id=user_a)
             except ValueError:
-                user_a = get_object_or_None(User, username=username_list[0])
+                user_a = get_object_or_None(authUser, username=username_list[0])
             if user_a is None:
                 return JSONError(message="User ID not Found", code=404)
 

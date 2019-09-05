@@ -1,9 +1,11 @@
 from rest_framework import serializers
+from users.models import User as authUser
 from matches.models import Match
 from matches.models import PositionMatch
 from matches.models import EmployerMatch
 from matches.models import LocationMatch
-from django.contrib.auth.models import User as authUser
+#from django.contrib.auth.models import User as authUser
+from users.models import User as authUser
 
 
 class CurrentUserSerializer(serializers.ModelSerializer):

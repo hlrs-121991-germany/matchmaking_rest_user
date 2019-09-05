@@ -3,13 +3,15 @@ from django.shortcuts import render
 from annoying.functions import get_object_or_None
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import get_user_model
+#from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
 #from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from likes.models import UserLike
+from users.models import User as authUser
 from likes.serializers import (UserLikeSerializerGet, CurrentUserSerializer,
                                UserLikeSerializerPost)
 
@@ -40,6 +42,7 @@ def JSONError(message=None, code=404, status=status.HTTP_404_NOT_FOUND):
 #        user_likes_json = { "user": user_name, "liked_users": liked_users_name}
 
 @csrf_exempt
+@api_view(['GET', 'POST'])
 def user_like_list(request):
     if request.method == 'GET':
         username_list = request.GET.getlist('user')
@@ -51,12 +54,12 @@ def user_like_list(request):
             return JSONResponse(user_likes_serializer.data)
 
         user = None
-        User = get_user_model()
+        #User = get_user_model()
         try:
             user = int(username_list[0])
-            user = get_object_or_None(User, id=user)
+            user = get_object_or_None(authUser, id=user)
         except ValueError:
-            user = get_object_or_None(User, username=username_list[0])
+            user = get_object_or_None(authUser, username=username_list[0])
         if user is None:
             return JSONError(message="User ID not Found", code=404)
 
@@ -103,16 +106,17 @@ def user_like_list(request):
 
 
 @csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
 def user_like_detail(request, pk):
     user_like = None
     user_id = -1
     try:
         user_id = int(pk)
-        User = get_user_model()
-        user_details = get_object_or_None(User, id=pk)
+        #User = get_user_model()
+        user_details = get_object_or_None(authUser, id=pk)
     except ValueError:
-        User = get_user_model()
-        user_details = get_object_or_None(User, username=pk)
+        #User = get_user_model()
+        user_details = get_object_or_None(authUser, username=pk)
     if user_details is not None:
         user_id = user_details.id
     else:
@@ -142,7 +146,7 @@ def user_like_detail(request, pk):
             if (("add" not in user_like_data) and
                     ("remove" not in user_like_data)):
                 raise ValueError('Required key is not found in request data')
-            User = get_user_model()
+            #User = get_user_model()
             if ("add" in user_like_data):
                 if ((not isinstance(user_like_data["add"], (str, unicode))) or
                         (not (all(isinstance(int(x), int) for x in
@@ -161,19 +165,19 @@ def user_like_detail(request, pk):
 
 
             for user_r in user_rmv:
-                user_remove = get_object_or_None(User, pk=user_r)
+                user_remove = get_object_or_None(authUser, pk=user_r)
                 if user_remove is None:
                     raise ValueError("{0} is not valid in 'remove'".format(user_r))
             for user_a in user_add:
-                user_adding = get_object_or_None(User, pk=user_a)
+                user_adding = get_object_or_None(authUser, pk=user_a)
                 if user_adding is None:
                     raise ValueError("{0} is not valid in 'add'".format(user_a))
 
             for user_r in user_rmv:
-                user_remove = User.objects.get(pk=user_r)
+                user_remove = authUser.objects.get(id=user_r)
                 user_like.liked_users.remove(user_remove)
             for user_a in user_add:
-                user_adding = User.objects.get(pk=user_a)
+                user_adding = authUser.objects.get(id=user_a)
                 user_like.liked_users.add(user_adding)
             user_like.save()
 
