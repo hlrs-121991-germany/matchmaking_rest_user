@@ -1,0 +1,16 @@
+{
+  "user":{
+     "id":1,
+     "username":"dinesh121991"
+  },
+  "liked_users":[
+     {
+        "id":3,
+        "username":"nala"
+     },
+     {
+        "id":4,
+        "username":"josey"
+     }
+  ]
+}

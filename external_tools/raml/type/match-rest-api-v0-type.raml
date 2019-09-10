@@ -1,0 +1,182 @@
+#%RAML 1.0 Library
+
+usage: Data types for Questions API
+
+types:
+  AnswerRequest:
+    properties:
+      text:
+        required: true
+        type: string
+
+  AnswerResponse: 
+    properties:
+      id:
+        required: false
+        type: integer
+      text:
+        required: true
+        type: string
+
+  QuestionRequestPut: 
+    properties:
+      text:
+        required: false
+        type: string
+      ans-add:
+        required: false
+        type: string
+      ans-remove:
+        required: false
+        type: string
+
+
+  QuestionRequest: 
+    properties:
+      text:
+        required: true
+        type: string
+      answers:
+        required: true
+        type: array
+        items: integer
+
+  QuestionResponse: 
+    properties:
+      id:
+        required: true
+        type: integer
+      text:
+        required: true
+        type: string
+      answers:
+        required: true
+        type: array
+        items: AnswerResponse
+
+  UserResponse:
+    properties:
+        id:
+          required: true
+          type: integer
+        username:
+          required: true
+          type: string
+
+  QuestionResponseForUserAnswer: 
+    properties:
+      id:
+        required: true
+        type: integer
+      text:
+        required: true
+        type: string
+
+  UserAnswerRequest:
+    properties:
+        user:
+          required: true
+          type: integer
+        question:
+          required: true
+          type: integer
+        my_answer:
+          required: true
+          type: integer
+        my_answer_importance:
+          required: true
+          type: string
+        their_answer:
+          required: true
+          type: integer
+        their_importance:
+          required: true
+          type: string
+
+  UserAnswerResponse:
+    properties:
+        id:
+          required: true
+          type: integer
+        user:
+          required: true
+          type: UserResponse
+        question:
+          required: true
+          type: QuestionResponseForUserAnswer
+        my_answer:
+          required: true
+          type: AnswerResponse
+        my_answer_importance:
+          required: true
+          type: string
+        their_answer:
+          required: true
+          type: AnswerResponse
+        their_importance:
+          required: true
+          type: string
+
+  MatchResponse:
+    properties:
+      id:
+        required: true
+        type: integer
+      match_decimal:
+        required: true
+        type: string
+      user_a:
+        required: true
+        type: UserResponse
+      user_b:
+        required: true
+        type: UserResponse
+      questions_answered:
+        required: true
+        type: integer
+
+  UserLikeResponse:
+    properties:
+        user:
+          required: true
+          type: UserResponse
+        liked_users:
+          required: true
+          type: array
+          items: UserResponse
+
+  UserLikePostRequest:
+    properties:
+        user:
+          required: true
+          type: integer
+        liked_users:
+          required: true
+          type: array
+          items: integer
+
+
+  UserLikeRequestPut:
+    properties:
+        add:
+          required: true
+          type: string
+        remove:
+          required: true
+          type: string
+
+  CommonErrorMessage: 
+    properties:
+      message:
+        required: true
+        type: string
+      code:
+        required: true
+        type: integer
+
+  ErrorResponse: 
+    properties:
+      error:
+        required: true
+        type: CommonErrorMessage
+

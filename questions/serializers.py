@@ -68,7 +68,7 @@ class QuestionSerializerPut(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = [
-            'id',
+#            'id',
             'text',
 #            'ans-add',
 #            'ans-remove',

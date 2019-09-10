@@ -7,13 +7,16 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, schema, renderer_classes
 #from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from likes.models import UserLike
 from users.models import User as authUser
+from rest_framework.schemas import AutoSchema
+from rest_framework.serializers import Serializer
+from rest_framework_swagger import renderers
 from likes.serializers import (UserLikeSerializerGet, CurrentUserSerializer,
-                               UserLikeSerializerPost)
+                               UserLikeSerializerPost, UserLikeSerializerGUI)
 
 
 class JSONResponse(HttpResponse):
@@ -41,8 +44,13 @@ def JSONError(message=None, code=404, status=status.HTTP_404_NOT_FOUND):
 #                liked_users_name.append(user.username)
 #        user_likes_json = { "user": user_name, "liked_users": liked_users_name}
 
+class CustomAutoSchema(AutoSchema):
+    pass
+
 @csrf_exempt
 @api_view(['GET', 'POST'])
+@schema(CustomAutoSchema())
+@renderer_classes([renderers.OpenAPIRenderer, renderers.SwaggerUIRenderer])
 def user_like_list(request):
     if request.method == 'GET':
         username_list = request.GET.getlist('user')
@@ -104,6 +112,7 @@ def user_like_list(request):
             return JSONError(message="Object is already created for the user",
                              code=400, status=status.HTTP_400_BAD_REQUEST)
 
+user_like_list.get_serializer = lambda *args: UserLikeSerializerGUI
 
 @csrf_exempt
 @api_view(['GET', 'PUT', 'DELETE'])

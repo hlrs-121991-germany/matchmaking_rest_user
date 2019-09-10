@@ -1,0 +1,6 @@
+{
+	"error":{
+		"message":"Answer is not found",
+		"code":404
+	}
+}

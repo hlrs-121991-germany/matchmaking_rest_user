@@ -1,0 +1,7 @@
+{
+  "error":
+  {
+    "message":"'text' key is not found in request data",
+    "code":400
+  }
+}

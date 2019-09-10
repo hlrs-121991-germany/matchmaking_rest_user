@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "user_a": {
+      "id": 1,
+      "username": "dinesh121991"
+    },
+    "user_b": {
+      "id": 2,
+      "username": "denis"
+    },
+    "match_decimal": "0.99999999",
+    "questions_answered": 1
+  },
+  {
+    "id": 2,
+    "user_a": {
+      "id": 2,
+      "username": "denis"
+    },
+    "user_b": {
+      "id": 3,
+      "username": "nala"
+    },
+    "match_decimal": "0.00000100",
+    "questions_answered": 1
+  },
+  {
+    "id": 3,
+    "user_a": {
+      "id": 1,
+      "username": "dinesh121991"
+    },
+    "user_b": {
+      "id": 3,
+      "username": "nala"
+    },
+    "match_decimal": "0.00000100",
+    "questions_answered": 1
+  },
+  {
+    "id": 4,
+    "user_a": {
+      "id": 1,
+      "username": "dinesh121991"
+    },
+    "user_b": {
+      "id": 4,
+      "username": "josey"
+    },
+    "match_decimal": "0.00000000",
+    "questions_answered": 0
+  },
+  {
+    "id": 5,
+    "user_a": {
+      "id": 2,
+      "username": "denis"
+    },
+    "user_b": {
+      "id": 4,
+      "username": "josey"
+    },
+    "match_decimal": "0.00000000",
+    "questions_answered": 0
+  },
+  {
+    "id": 6,
+    "user_a": {
+      "id": 3,
+      "username": "nala"
+    },
+    "user_b": {
+      "id": 4,
+      "username": "josey"
+    },
+    "match_decimal": "0.00000000",
+    "questions_answered": 0
+  }
+]

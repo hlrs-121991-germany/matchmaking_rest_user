@@ -1,0 +1,7 @@
+{
+  "error":
+  {
+    "message":"User ID not found",
+    "code":404
+  }
+}

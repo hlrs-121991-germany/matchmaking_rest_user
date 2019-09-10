@@ -1,0 +1,6 @@
+{
+	"error":{
+		"message":"Question is not found",
+		"code":404
+	}
+}

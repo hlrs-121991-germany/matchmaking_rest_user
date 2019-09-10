@@ -1,0 +1,7 @@
+{
+  "error":
+  {
+    "message":"User is not found in the Likes table",
+    "code":404
+  }
+}

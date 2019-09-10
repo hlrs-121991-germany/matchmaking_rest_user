@@ -1,0 +1,6 @@
+{
+	"error":{
+		"message":"'user' key is not found in request data",
+		"code":404
+	}
+}

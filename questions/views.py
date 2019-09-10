@@ -16,6 +16,7 @@ from django.shortcuts import get_object_or_404
 from annoying.functions import get_object_or_None
 from questions.serializers import (QuestionSerializer, AnswerSerializer,
                                    QuestionSerializerPost,
+                                   QuestionSerializerPut,
                                    UserAnswerSerializerGet,
                                    UserAnswerSerializerPost)
 
@@ -94,6 +95,12 @@ def question_detail(request, pk):
                     raise ValueError('Value is wrong in the "ans-remove" data')
                 else:
                     ans_rmv = answer_data["ans-remove"].split(",")
+            if ("text" in answer_data):
+                if (not isinstance(answer_data["text"],
+                                    (str, unicode))):
+                    raise ValueError('Value is wrong in the "text" data')
+                else:
+                    question.text = answer_data["text"]
 
 
             for ans_r in ans_rmv:

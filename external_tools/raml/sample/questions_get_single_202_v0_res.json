@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "text": "Are you  married?",
+    "answers": [
+      {
+        "id": 1,
+        "text": "Yes"
+      },
+      {
+        "id": 2,
+        "text": "No"
+      }
+    ]
+}

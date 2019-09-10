@@ -83,6 +83,8 @@ def match_list(request):
                 return JSONError(message= "Second User ID not Found", code=404)
             user_b = user_b.id
 
+            if (user_a == user_b):
+                return JSONError(message= "First & Second User ID are same", code=404)
             match_obj, match_stat = Match.objects.get_or_create_match(user_a,
                                                                       user_b)
             if match_stat is True:
@@ -136,7 +138,9 @@ def match_detail(request, pk):
         Match.objects.update_all()
         match = Match.objects.get(pk=pk)
     except Match.DoesNotExist:
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+        return JSONError(message=
+                         "Match is not found in the Matches table",
+                         code=404)
     if request.method == 'GET':
         match_serializer = MatchSerializer(match)
         return JSONResponse(match_serializer.data)

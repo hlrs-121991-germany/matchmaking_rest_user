@@ -1,0 +1,7 @@
+{
+  "error":
+  {
+    "message":"UserAnswer is not found",
+    "code":404
+  }
+}

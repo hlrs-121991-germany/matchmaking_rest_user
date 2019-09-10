@@ -6,6 +6,9 @@ from likes.models import UserLike
 
 User = settings.AUTH_USER_MODEL
 
+class UserLikeSerializerGUI(serializers.Serializer):
+    user = serializers.CharField(max_length=100)
+
 class CurrentUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = authUser

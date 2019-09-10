@@ -1,0 +1,8 @@
+{
+  "user": 2,
+  "question": 1,
+  "my_answer": 1,
+  "my_answer_importance": "Mandatory",
+  "their_answer": 1,
+  "their_importance": "Mandatory"
+}

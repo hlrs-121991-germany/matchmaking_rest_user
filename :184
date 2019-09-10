@@ -1,0 +1,408 @@
+#%RAML 1.0
+---
+title: Matchmaking REST API
+version: v0
+baseUri: http://127.0.0.1:8000/match-api/{version}
+mediaType:  application/json
+protocols: [ HTTP, HTTPS ]
+
+uses: 
+  custom_type: type/match-rest-api-v0-type.raml
+
+/questions:
+  get:
+    description: Retrive all the Questions
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.QuestionResponse[]
+            example: !include sample/questions_get_list_200_v0_res.json
+  post:
+    description: Create a new object
+    body:
+      application/json:
+        type: custom_type.QuestionRequest
+        example: !include sample/questions_get_single_202_v0_req.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.QuestionResponse
+            example: !include sample/questions_get_single_202_v0_res.json
+      400:
+        body:
+          application/json:
+            type: custom_type.ErrorResponse
+            example: !include sample/question_error_response_400_v0.json
+
+  /{id}:
+    get:
+      description: |
+        Retrive specific Question. ID is the URI parameter in string, and 
+        the value is an unique integer (Question Identity).
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.QuestionResponse
+              example: !include sample/questions_get_single_200_v0_res.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/question_error_response_404_v0.json
+
+    put:
+      description: |
+        Update the Question details partially or completely. ans-add, 
+        ans-remove is the string value to list answer id. Eg. "1,3,4,5,7,8".
+      body:
+        application/json:
+          type: custom_type.QuestionRequestPut
+          example: !include sample/questions_put_single_202_v0_req.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.QuestionResponse
+              example: !include sample/questions_get_single_202_v0_res.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/question_error_response_404_v0.json
+        400:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/question_error_response_400_v0.json
+
+    delete:
+      description: |
+        Delete the Question.
+      responses:
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/question_error_response_404_v0.json
+        204:
+          body:
+
+/answers:
+  get:
+    description: Retrive all the Answers
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.AnswerResponse[]
+            example: !include sample/answers_get_list_200_v0_res.json
+  post:
+    description: Create a new object in Answer
+    body:
+      application/json:
+        type: custom_type.AnswerRequest
+        example: !include sample/answers_get_single_202_v0_req.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.AnswerResponse
+            example: !include sample/answers_get_single_202_v0_res.json
+      400:
+        body:
+          application/json:
+            type: custom_type.ErrorResponse
+            example: !include sample/answer_error_response_400_v0.json
+
+  /{id}:
+    get:
+      description: |
+        Retrive specific Answer. ID is the URI parameter in string, and 
+        the value is an unique integer (Answer Identity).
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.AnswerResponse
+              example: !include sample/answers_get_single_200_v0_res.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/answer_error_response_404_v0.json
+
+    put:
+      description: |
+        Update the Answer completely. 
+      body:
+        application/json:
+          type: custom_type.AnswerRequest
+          example: !include sample/answers_put_single_202_v0_req.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.AnswerResponse
+              example: !include sample/answers_get_single_202_v0_res.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/answer_error_response_404_v0.json
+        400:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/answer_error_response_400_v0.json
+
+    delete:
+      description: |
+        Delete the Answer.
+      responses:
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/answer_error_response_404_v0.json
+        204:
+          body:
+
+/user-answers:
+  get:
+    description: Retrive all the answered users details
+    queryParameters:
+      user:
+        description: |
+          Get the answer based on "user" filter, and value would be user id 
+          (integer) or user name (string). It is an optional filter query
+          parameter.
+        type: string
+        required: false
+        example: "dinesh121991"
+        example: "2"
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.UserAnswerResponse[]
+            example: !include sample/user_answers_get_list_200_v0_res.json
+  post:
+    description: Create a new object in UserAnswer
+    body:
+      application/json:
+        type: custom_type.UserAnswerRequest
+        example: !include sample/user_answers_get_single_202_v0_req.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.UserAnswerResponse
+            example: !include sample/user_answers_get_single_202_v0_res.json
+      400:
+        body:
+          application/json:
+            type: custom_type.ErrorResponse
+            example: !include sample/user_answer_error_response_400_v0.json
+
+  /{id}:
+    get:
+      description: |
+        Retrive specific User Answer. ID is the URI parameter in string, and 
+        the value is an unique integer (Answer Identity).
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.UserAnswerResponse
+              example: !include sample/user_answers_get_single_200_v0_res.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/user_answer_error_response_404_v0.json
+
+    put:
+      description: |
+        Update the Answer completely. 
+      body:
+        application/json:
+          type: custom_type.UserAnswerRequest
+          example: !include sample/user_answers_put_single_202_v0_req.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.UserAnswerResponse
+              example: !include sample/user_answers_get_single_202_v0_res.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/user_answer_error_response_404_v0.json
+        400:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/user_answer_error_response_400_v0.json
+
+    delete:
+      description: |
+        Delete the User Answer.
+      responses:
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/user_answer_error_response_404_v0.json
+        204:
+          body:
+
+/matches:
+  get:
+    description: Retrive all the Answers
+    queryParameters:
+      user:
+        description: |
+          Get the matches based on the first "user" filter (eg. ?user=<value>), 
+          and value would be user id (integer) or user name (string). 
+          It would be list of matches by filtering with the value of first user.
+          Get the answer based on the multiple "user" filter
+          (eg. ?user=<value>&user=<value>). It would give single match
+          element based on the match of both first and second user value.
+          It is an optional filter query parameter.
+        type: string
+        required: false
+        example: "dinesh121991"
+        example: "1"
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.MatchResponse[]
+            example: !include sample/matches_get_list_200_v0_resp.json
+      404:
+        body:
+          application/json:
+            type: custom_type.ErrorResponse
+            example: !include sample/matches_error_response_404_v0.json
+# curl  'http://127.0.0.1:8000/match-api/v0/matches?user=denis&user=dinesh121991'
+# curl  'http://127.0.0.1:8000/match-api/v0/matches?user=denis'
+  /{id}:
+    get:
+      description: |
+        Retrive specific Match. ID is the unique integer to identify Matches.
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.MatchResponse
+              example: !include sample/match_get_single_200_v0_resp.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/match_error_response_404_v0.json
+
+/user-likes:
+  get:
+    description: Retrive all the liked users details
+    queryParameters:
+      user:
+        description: Get the user-likes based on the user filter, 
+          and value would be user id (integer) or user name (string). 
+          It is an optional filter query parameter.
+        type: string
+        required: false
+        example: "dinesh121991"
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.UserLikeResponse[]
+            example: !include sample/user_likes_get_list_200_v0_res.json
+      404:
+        body:
+          application/json:
+            type: custom_type.ErrorResponse
+            example: !include sample/user_likes_error_response_404_v0.json
+
+  post:
+    description: Create a new object in UserLikes to represent liked user details
+    body:
+      application/json:
+        type: custom_type.UserLikePostRequest
+        example: !include sample/user_likes_post_202_v0_req.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.UserLikeResponse
+            example: !include sample/user_like_get_single_200_v0_res.json
+      404:
+        body:
+          application/json:
+            type: custom_type.ErrorResponse
+            example: !include sample/user_likes_error_response_404_v0.json
+      400:
+        body:
+          application/json:
+            type: custom_type.ErrorResponse
+            example: !include sample/user_likes_error_response_400_v0.json
+
+  /{id}:
+    get:
+      description: |
+        Retrive specific User Likes details. ID is the URI parameter in string, or 
+        in integer to match User.
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.UserLikeResponse
+              example: !include sample/user_like_get_single_200_v0_res.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/user_like_error_response_404_v0.json
+
+    put:
+      description: |
+        Update the User Likes by adding and removing liked users. "add" and
+        "remove" is the string to represent list of users (e.g "3,5,6").
+      body:
+        application/json:
+          type: custom_type.UserLikeRequestPut
+          example: !include sample/user_likes_put_single_202_v0_req.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.UserLikeResponse
+              example: !include sample/user_like_get_single_202_v0_res.json
+        400:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/user_likes_put_error_response_400_v0.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/user_like_error_response_404_v0.json
+
+    delete:
+      description: |
+        Delete the specific UserLike details.
+      responses:
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/user_like_error_response_404_v0.json
+        204:
+          body:

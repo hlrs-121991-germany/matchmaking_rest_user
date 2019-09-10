@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "user_a": {
+    "id": 1,
+    "username": "dinesh121991"
+  },
+  "user_b": {
+    "id": 2,
+    "username": "denis"
+  },
+  "match_decimal": "0.99999999",
+  "questions_answered": 1
+}

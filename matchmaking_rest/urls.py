@@ -23,9 +23,9 @@ raml_schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    url(r'^$', raml_schema_view),
+    #url(r'^$', raml_schema_view),
     #url(r'^$', base_schema_view),
-    #url(r'^$', swagger_schema_view),
+    url(r'^$', swagger_schema_view),
     #url(r'^$', root_views.api_root_list),
     url(r'^match-api$',
         root_views.api_match_list),

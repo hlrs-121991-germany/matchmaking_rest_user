@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "user": {
+      "id": 1,
+      "username": "dinesh121991"
+    },
+    "question": {
+      "id": 1,
+      "text": "Are you  married?"
+    },
+    "my_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "my_answer_importance": "Mandatory",
+    "their_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "their_importance": "Mandatory"
+  },
+  {
+    "id": 2,
+    "user": {
+      "id": 2,
+      "username": "denis"
+    },
+    "question": {
+      "id": 1,
+      "text": "Are you  married?"
+    },
+    "my_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "my_answer_importance": "Mandatory",
+    "their_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "their_importance": "Mandatory"
+  },
+  {
+    "id": 3,
+    "user": {
+      "id": 3,
+      "username": "nala"
+    },
+    "question": {
+      "id": 1,
+      "text": "Are you  married?"
+    },
+    "my_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "my_answer_importance": "Mandatory",
+    "their_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "their_importance": "Not Important"
+  }
+]

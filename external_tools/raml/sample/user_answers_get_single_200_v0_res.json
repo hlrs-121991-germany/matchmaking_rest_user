@@ -1,0 +1,21 @@
+{
+  "id": 2,
+  "user": {
+    "id": 2,
+    "username": "denis"
+  },
+  "question": {
+    "id": 1,
+    "text": "Are you  married?"
+  },
+  "my_answer": {
+    "id": 1,
+    "text": "Yes"
+  },
+  "my_answer_importance": "Mandatory",
+  "their_answer": {
+    "id": 1,
+    "text": "Yes"
+  },
+  "their_importance": "Mandatory"
+}
