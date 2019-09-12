@@ -170,7 +170,7 @@ pre code {
 .required {
   color: #f00;
 }
-    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Matchmaking REST API API documentation <small>version v0</small></h1><p>http://127.0.0.1:8000/match-api/{version}</p><ul><li><strong>version</strong>: <em><span class="required">required</span>(v0)</em></li></ul></div><div class="panel panel-default"><div class="panel-heading"><h3 id="questions" class="panel-title">/questions</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_questions"><span class="parent"></span>/questions</a> <span class="methods"><a href="#questions_get"><span class="badge badge_get">get</span></a> <a href="#questions_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_questions" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#questions_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive all the Questions</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#questions_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new object</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="questions_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/questions</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive all the Questions</p></div><ul class="nav nav-tabs"><li class="active"><a href="#questions_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="questions_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of object</p><p><strong>Items</strong>: QuestionResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>answers</strong>: <em><span class="required">required</span>(array of custom_type.AnswerResponse)</em><p><strong>Items</strong>: AnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Matchmaking REST API API documentation <small>version v0</small></h1><p>http://127.0.0.1:8000/match-api/{version}</p><ul><li><strong>version</strong>: <em><span class="required">required</span>(v0)</em></li></ul></div><div class="panel panel-default"><div class="panel-heading"><h3 id="questions" class="panel-title">/questions</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_questions"><span class="parent"></span>/questions</a> <span class="methods"><a href="#questions_get"><span class="badge badge_get">get</span></a> <a href="#questions_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_questions" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#questions_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive all the Questions</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#questions_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new object</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="questions_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/questions</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive all the Questions</p></div><ul class="nav nav-tabs"><li class="active"><a href="#questions_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="questions_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of object</p><p><strong>Items</strong>: QuestionResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>answers</strong>: <em><span class="required">required</span>(array of custom_type.AnswerResponse)</em><p><strong>Items</strong>: AnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   {
     "id": 1,
     "text": "Are you  married?",
@@ -212,7 +212,7 @@ pre code {
     "text": "Are you  married?",
     "answers": [1, 2]
 }
-</code></pre></div></div><div class="tab-pane" id="questions_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>answers</strong>: <em><span class="required">required</span>(array of custom_type.AnswerResponse)</em><p><strong>Items</strong>: AnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+</code></pre></div></div><div class="tab-pane" id="questions_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>answers</strong>: <em><span class="required">required</span>(array of custom_type.AnswerResponse)</em><p><strong>Items</strong>: AnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
     "id": 1,
     "text": "Are you  married?",
     "answers": [
@@ -226,7 +226,13 @@ pre code {
       }
     ]
 }
-</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_questions__id_"><span class="parent">/questions</span>/{id}</a> <span class="methods"><a href="#questions__id__get"><span class="badge badge_get">get</span></a> <a href="#questions__id__put"><span class="badge badge_put">put</span></a> <a href="#questions__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_questions__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#questions__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive specific Question. ID is the URI parameter in string, and the value is an unique integer (Question Identity).</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#questions__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update the Question details partially or completely. ans-add, ans-remove is the string value to list answer id. Eg. "1,3,4,5,7,8".</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#questions__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete the Question.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="questions__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/questions</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive specific Question. ID is the URI parameter in string, and the value is an unique integer (Question Identity).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#questions__id__get_request" data-toggle="tab">Request</a></li><li><a href="#questions__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="questions__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="questions__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>answers</strong>: <em><span class="required">required</span>(array of custom_type.AnswerResponse)</em><p><strong>Items</strong>: AnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"error":{
+		"message":"&#39;text&#39; key is not found in request data",
+		"code":400
+	}
+}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_questions__id_"><span class="parent">/questions</span>/{id}</a> <span class="methods"><a href="#questions__id__get"><span class="badge badge_get">get</span></a> <a href="#questions__id__put"><span class="badge badge_put">put</span></a> <a href="#questions__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_questions__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#questions__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive specific Question. ID is the URI parameter in string, and the value is an unique integer (Question Identity).</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#questions__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update the Question details partially or completely. ans-add, ans-remove is the string value to list answer id. Eg. "1,3,4,5,7,8".</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#questions__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete the Question.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="questions__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/questions</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive specific Question. ID is the URI parameter in string, and the value is an unique integer (Question Identity).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#questions__id__get_request" data-toggle="tab">Request</a></li><li><a href="#questions__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="questions__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="questions__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>answers</strong>: <em><span class="required">required</span>(array of custom_type.AnswerResponse)</em><p><strong>Items</strong>: AnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
     "id": 1,
     "text": "Are you  married?",
     "answers": [
@@ -239,13 +245,19 @@ pre code {
         "text": "No"
       }
     ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"error":{
+		"message":"Question is not found",
+		"code":404
+	}
 }
 </code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="questions__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/questions</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update the Question details partially or completely. ans-add, ans-remove is the string value to list answer id. Eg. "1,3,4,5,7,8".</p></div><ul class="nav nav-tabs"><li class="active"><a href="#questions__id__put_request" data-toggle="tab">Request</a></li><li><a href="#questions__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="questions__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>text</strong>: <em>(string)</em></li><li><strong>ans-add</strong>: <em>(string)</em></li><li><strong>ans-remove</strong>: <em>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
     "text": "Are you  married?",
     "ans-add": "1, 2",
     "ans-remove": "3, 4"
 }
-</code></pre></div></div><div class="tab-pane" id="questions__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>answers</strong>: <em><span class="required">required</span>(array of custom_type.AnswerResponse)</em><p><strong>Items</strong>: AnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+</code></pre></div></div><div class="tab-pane" id="questions__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>answers</strong>: <em><span class="required">required</span>(array of custom_type.AnswerResponse)</em><p><strong>Items</strong>: AnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
     "id": 1,
     "text": "Are you  married?",
     "answers": [
@@ -258,6 +270,18 @@ pre code {
         "text": "No"
       }
     ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"error":{
+		"message":"&#39;text&#39; key is not found in request data",
+		"code":400
+	}
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"error":{
+		"message":"Question is not found",
+		"code":404
+	}
 }
 </code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="questions__id__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/questions</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete the Question.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#questions__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#questions__id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="questions__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="questions__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
 	"error":{
@@ -265,4 +289,503 @@ pre code {
 		"code":404
 	}
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="answers" class="panel-title">/answers</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_answers"><span class="parent"></span>/answers</a> <span class="methods"><a href="#answers_get"><span class="badge badge_get">get</span></a> <a href="#answers_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_answers" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#answers_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#answers_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/answers</h4></div><div class="modal-body"><ul class="nav nav-tabs"></ul><div class="tab-content"></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/answers</h4></div><div class="modal-body"><ul class="nav nav-tabs"></ul><div class="tab-content"></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_answers__id_"><span class="parent">/answers</span>/{id}</a> <span class="methods"><a href="#answers__id__get"><span class="badge badge_get">get</span></a> <a href="#answers__id__put"><span class="badge badge_put">put</span></a> <a href="#answers__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_answers__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#answers__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#answers__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#answers__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/answers</span>/{id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#answers__id__get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="answers__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/answers</span>/{id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#answers__id__put_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="answers__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers__id__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/answers</span>/{id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#answers__id__delete_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="answers__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="user_answers" class="panel-title">/user-answers</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_user_answers"><span class="parent"></span>/user-answers</a> <span class="methods"><a href="#user_answers_get"><span class="badge badge_get">get</span></a> <a href="#user_answers_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_user_answers" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#user_answers_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive all the user answers</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_answers_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/user-answers</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive all the user answers</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_answers_get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_answers_get_request"><h3>Query Parameters</h3><ul><li><strong>user</strong>: <em>(string)</em></li><li><strong>user2</strong>: <em>(string)</em><p>An author&#39;s full name</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Mary Roach</code></pre></div></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/user-answers</h4></div><div class="modal-body"><ul class="nav nav-tabs"></ul><div class="tab-content"></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_user_answers__id_"><span class="parent">/user-answers</span>/{id}</a> <span class="methods"><a href="#user_answers__id__get"><span class="badge badge_get">get</span></a> <a href="#user_answers__id__put"><span class="badge badge_put">put</span></a> <a href="#user_answers__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_user_answers__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#user_answers__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_answers__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_answers__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/user-answers</span>/{id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#user_answers__id__get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_answers__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/user-answers</span>/{id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#user_answers__id__put_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_answers__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers__id__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/user-answers</span>/{id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#user_answers__id__delete_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_answers__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="matches" class="panel-title">/matches</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_matches"><span class="parent"></span>/matches</a> <span class="methods"><a href="#matches_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_matches" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#matches_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="matches_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/matches</h4></div><div class="modal-body"><ul class="nav nav-tabs"></ul><div class="tab-content"></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="user_likes" class="panel-title">/user-likes</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_user_likes"><span class="parent"></span>/user-likes</a> <span class="methods"><a href="#user_likes_get"><span class="badge badge_get">get</span></a> <a href="#user_likes_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_user_likes" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#user_likes_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_likes_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/user-likes</h4></div><div class="modal-body"><ul class="nav nav-tabs"></ul><div class="tab-content"></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/user-likes</h4></div><div class="modal-body"><ul class="nav nav-tabs"></ul><div class="tab-content"></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_user_likes__id_"><span class="parent">/user-likes</span>/{id}</a> <span class="methods"><a href="#user_likes__id__get"><span class="badge badge_get">get</span></a> <a href="#user_likes__id__put"><span class="badge badge_put">put</span></a> <a href="#user_likes__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_user_likes__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#user_likes__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_likes__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_likes__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/user-likes</span>/{id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#user_likes__id__get_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_likes__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/user-likes</span>/{id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#user_likes__id__put_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_likes__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes__id__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/user-likes</span>/{id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#user_likes__id__delete_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_likes__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#questions">/questions</a></li><li><a href="#answers">/answers</a></li><li><a href="#user_answers">/user-answers</a></li><li><a href="#matches">/matches</a></li><li><a href="#user_likes">/user-likes</a></li></ul></div></div></div></div></body></html>
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="answers" class="panel-title">/answers</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_answers"><span class="parent"></span>/answers</a> <span class="methods"><a href="#answers_get"><span class="badge badge_get">get</span></a> <a href="#answers_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_answers" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#answers_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive all the Answers</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#answers_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new object in Answer</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/answers</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive all the Answers</p></div><ul class="nav nav-tabs"><li class="active"><a href="#answers_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="answers_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of object</p><p><strong>Items</strong>: AnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+  {
+    "id": 1,
+    "text": "Yes"
+  },
+  {
+    "id": 2,
+    "text": "No"
+  },
+  {
+    "id": 3,
+    "text": "Good"
+  },
+  {
+    "id": 4,
+    "text": "V V Good"
+  },
+  {
+    "id": 5,
+    "text": "Not bad"
+  },
+  {
+    "id": 6,
+    "text": "bad"
+  }
+]
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/answers</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new object in Answer</p></div><ul class="nav nav-tabs"><li class="active"><a href="#answers_post_request" data-toggle="tab">Request</a></li><li><a href="#answers_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="answers_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "text": "Yes"
+}
+</code></pre></div></div><div class="tab-pane" id="answers_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "id": 1,
+    "text": "Yes"
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"error":{
+		"message":"&#39;text&#39; key is not found in request data",
+		"code":400
+	}
+}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_answers__id_"><span class="parent">/answers</span>/{id}</a> <span class="methods"><a href="#answers__id__get"><span class="badge badge_get">get</span></a> <a href="#answers__id__put"><span class="badge badge_put">put</span></a> <a href="#answers__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_answers__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#answers__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive specific Answer. ID is the URI parameter in string, and the value is an unique integer (Answer Identity).</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#answers__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update the Answer completely.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#answers__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete the Answer.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/answers</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive specific Answer. ID is the URI parameter in string, and the value is an unique integer (Answer Identity).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#answers__id__get_request" data-toggle="tab">Request</a></li><li><a href="#answers__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="answers__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="answers__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "id": 1,
+    "text": "Yes"
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"error":{
+		"message":"Answer is not found",
+		"code":404
+	}
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/answers</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update the Answer completely.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#answers__id__put_request" data-toggle="tab">Request</a></li><li><a href="#answers__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="answers__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "text": "Yes"
+}
+</code></pre></div></div><div class="tab-pane" id="answers__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "id": 1,
+    "text": "Yes"
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"error":{
+		"message":"&#39;text&#39; key is not found in request data",
+		"code":400
+	}
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"error":{
+		"message":"Answer is not found",
+		"code":404
+	}
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="answers__id__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/answers</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete the Answer.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#answers__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#answers__id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="answers__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="answers__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"error":{
+		"message":"Answer is not found",
+		"code":404
+	}
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="user_answers" class="panel-title">/user-answers</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_user_answers"><span class="parent"></span>/user-answers</a> <span class="methods"><a href="#user_answers_get"><span class="badge badge_get">get</span></a> <a href="#user_answers_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_user_answers" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#user_answers_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive all the answered users details</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_answers_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new object in UserAnswer</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/user-answers</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive all the answered users details</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_answers_get_request" data-toggle="tab">Request</a></li><li><a href="#user_answers_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_answers_get_request"><h3>Query Parameters</h3><ul><li><strong>user</strong>: <em>(string)</em><p>Get the answer based on "user" filter, and value would be user id (integer) or user name (string). It is an optional filter query parameter.</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>dinesh121991</code></pre></div></li></ul></div><div class="tab-pane" id="user_answers_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of object</p><p><strong>Items</strong>: UserAnswerResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>user</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>question</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>my_answer</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>my_answer_importance</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>their_answer</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>their_importance</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+  {
+    "id": 1,
+    "user": {
+      "id": 1,
+      "username": "dinesh121991"
+    },
+    "question": {
+      "id": 1,
+      "text": "Are you  married?"
+    },
+    "my_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "my_answer_importance": "Mandatory",
+    "their_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "their_importance": "Mandatory"
+  },
+  {
+    "id": 2,
+    "user": {
+      "id": 2,
+      "username": "denis"
+    },
+    "question": {
+      "id": 1,
+      "text": "Are you  married?"
+    },
+    "my_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "my_answer_importance": "Mandatory",
+    "their_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "their_importance": "Mandatory"
+  },
+  {
+    "id": 3,
+    "user": {
+      "id": 3,
+      "username": "nala"
+    },
+    "question": {
+      "id": 1,
+      "text": "Are you  married?"
+    },
+    "my_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "my_answer_importance": "Mandatory",
+    "their_answer": {
+      "id": 1,
+      "text": "Yes"
+    },
+    "their_importance": "Not Important"
+  }
+]
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/user-answers</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new object in UserAnswer</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_answers_post_request" data-toggle="tab">Request</a></li><li><a href="#user_answers_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_answers_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>user</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>question</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>my_answer</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>my_answer_importance</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>their_answer</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>their_importance</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "user": 2,
+  "question": 1,
+  "my_answer": 1,
+  "my_answer_importance": "Mandatory",
+  "their_answer": 1,
+  "their_importance": "Mandatory"
+}
+</code></pre></div></div><div class="tab-pane" id="user_answers_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>user</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>question</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>my_answer</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>my_answer_importance</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>their_answer</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>their_importance</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "user": {
+    "id": 2,
+    "username": "denis"
+  },
+  "question": {
+    "id": 1,
+    "text": "Are you  married?"
+  },
+  "my_answer": {
+    "id": 1,
+    "text": "Yes"
+  },
+  "my_answer_importance": "Mandatory",
+  "their_answer": {
+    "id": 1,
+    "text": "Yes"
+  },
+  "their_importance": "Mandatory"
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"&#39;user&#39; key is not found in request data",
+    "code":400
+  }
+}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_user_answers__id_"><span class="parent">/user-answers</span>/{id}</a> <span class="methods"><a href="#user_answers__id__get"><span class="badge badge_get">get</span></a> <a href="#user_answers__id__put"><span class="badge badge_put">put</span></a> <a href="#user_answers__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_user_answers__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#user_answers__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive specific User Answer. ID is the URI parameter in string, and the value is an unique integer (Answer Identity).</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_answers__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update the Answer completely.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_answers__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete the User Answer.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/user-answers</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive specific User Answer. ID is the URI parameter in string, and the value is an unique integer (Answer Identity).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_answers__id__get_request" data-toggle="tab">Request</a></li><li><a href="#user_answers__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_answers__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="user_answers__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>user</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>question</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>my_answer</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>my_answer_importance</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>their_answer</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>their_importance</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "user": {
+    "id": 2,
+    "username": "denis"
+  },
+  "question": {
+    "id": 1,
+    "text": "Are you  married?"
+  },
+  "my_answer": {
+    "id": 1,
+    "text": "Yes"
+  },
+  "my_answer_importance": "Mandatory",
+  "their_answer": {
+    "id": 1,
+    "text": "Yes"
+  },
+  "their_importance": "Mandatory"
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"UserAnswer is not found",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/user-answers</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update the Answer completely.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_answers__id__put_request" data-toggle="tab">Request</a></li><li><a href="#user_answers__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_answers__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>user</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>question</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>my_answer</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>my_answer_importance</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>their_answer</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>their_importance</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "user": 2,
+  "question": 1,
+  "my_answer": 1,
+  "my_answer_importance": "Mandatory",
+  "their_answer": 1,
+  "their_importance": "Mandatory"
+}
+</code></pre></div></div><div class="tab-pane" id="user_answers__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>user</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>question</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>my_answer</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>my_answer_importance</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>their_answer</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em>(integer)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>their_importance</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 2,
+  "user": {
+    "id": 2,
+    "username": "denis"
+  },
+  "question": {
+    "id": 1,
+    "text": "Are you  married?"
+  },
+  "my_answer": {
+    "id": 1,
+    "text": "Yes"
+  },
+  "my_answer_importance": "Mandatory",
+  "their_answer": {
+    "id": 1,
+    "text": "Yes"
+  },
+  "their_importance": "Mandatory"
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"&#39;user&#39; key is not found in request data",
+    "code":400
+  }
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"UserAnswer is not found",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_answers__id__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/user-answers</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete the User Answer.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_answers__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#user_answers__id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_answers__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="user_answers__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"UserAnswer is not found",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="matches" class="panel-title">/matches</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_matches"><span class="parent"></span>/matches</a> <span class="methods"><a href="#matches_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_matches" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#matches_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive all the Answers</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="matches_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/matches</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive all the Answers</p></div><ul class="nav nav-tabs"><li class="active"><a href="#matches_get_request" data-toggle="tab">Request</a></li><li><a href="#matches_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="matches_get_request"><h3>Query Parameters</h3><ul><li><strong>user</strong>: <em>(string)</em><p>Get the matches based on the first "user" filter (eg. ?user=<value>), and value would be user id (integer) or user name (string). It would be list of matches by filtering with the value of first user. Get the answer based on the multiple "user" filter (eg. ?"user=value1&amp;user=value2"). It would give single match element based on the match of both first and second user value. It is an optional filter query parameter.</value></p><p><strong>Example</strong>:</p><div class="examples"><pre><code>dinesh121991</code></pre></div></li></ul></div><div class="tab-pane" id="matches_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of object</p><p><strong>Items</strong>: MatchResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>match_decimal</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>user_a</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>user_b</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>questions_answered</strong>: <em><span class="required">required</span>(integer)</em></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+  {
+    "id": 1,
+    "user_a": {
+      "id": 1,
+      "username": "dinesh121991"
+    },
+    "user_b": {
+      "id": 2,
+      "username": "denis"
+    },
+    "match_decimal": "0.99999999",
+    "questions_answered": 1
+  },
+  {
+    "id": 2,
+    "user_a": {
+      "id": 2,
+      "username": "denis"
+    },
+    "user_b": {
+      "id": 3,
+      "username": "nala"
+    },
+    "match_decimal": "0.00000100",
+    "questions_answered": 1
+  },
+  {
+    "id": 3,
+    "user_a": {
+      "id": 1,
+      "username": "dinesh121991"
+    },
+    "user_b": {
+      "id": 3,
+      "username": "nala"
+    },
+    "match_decimal": "0.00000100",
+    "questions_answered": 1
+  },
+  {
+    "id": 4,
+    "user_a": {
+      "id": 1,
+      "username": "dinesh121991"
+    },
+    "user_b": {
+      "id": 4,
+      "username": "josey"
+    },
+    "match_decimal": "0.00000000",
+    "questions_answered": 0
+  },
+  {
+    "id": 5,
+    "user_a": {
+      "id": 2,
+      "username": "denis"
+    },
+    "user_b": {
+      "id": 4,
+      "username": "josey"
+    },
+    "match_decimal": "0.00000000",
+    "questions_answered": 0
+  },
+  {
+    "id": 6,
+    "user_a": {
+      "id": 3,
+      "username": "nala"
+    },
+    "user_b": {
+      "id": 4,
+      "username": "josey"
+    },
+    "match_decimal": "0.00000000",
+    "questions_answered": 0
+  }
+]
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"Matches not Found",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_matches__id_"><span class="parent">/matches</span>/{id}</a> <span class="methods"><a href="#matches__id__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_matches__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#matches__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive specific Match. ID is the unique integer to identify Matches.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="matches__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/matches</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive specific Match. ID is the unique integer to identify Matches.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#matches__id__get_request" data-toggle="tab">Request</a></li><li><a href="#matches__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="matches__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="matches__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>match_decimal</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>user_a</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>user_b</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>questions_answered</strong>: <em><span class="required">required</span>(integer)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "user_a": {
+    "id": 1,
+    "username": "dinesh121991"
+  },
+  "user_b": {
+    "id": 2,
+    "username": "denis"
+  },
+  "match_decimal": "0.99999999",
+  "questions_answered": 1
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"Match is not found in the Matches table",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="user_likes" class="panel-title">/user-likes</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_user_likes"><span class="parent"></span>/user-likes</a> <span class="methods"><a href="#user_likes_get"><span class="badge badge_get">get</span></a> <a href="#user_likes_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_user_likes" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#user_likes_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive all the liked users details</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_likes_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new object in UserLikes to represent liked user details</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/user-likes</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive all the liked users details</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_likes_get_request" data-toggle="tab">Request</a></li><li><a href="#user_likes_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_likes_get_request"><h3>Query Parameters</h3><ul><li><strong>user</strong>: <em>(string)</em><p>Get the user-likes based on the user filter, and value would be user id (integer) or user name (string). It is an optional filter query parameter.</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>dinesh121991</code></pre></div></li></ul></div><div class="tab-pane" id="user_likes_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of object</p><p><strong>Items</strong>: UserLikeResponse</p><div class="items"><ul><li><strong>user</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>liked_users</strong>: <em><span class="required">required</span>(array of custom_type.UserResponse)</em><p><strong>Items</strong>: UserResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+   {
+      "user":{
+         "id":1,
+         "username":"dinesh121991"
+      },
+      "liked_users":[
+         {
+            "id":3,
+            "username":"nala"
+         },
+         {
+            "id":4,
+            "username":"josey"
+         }
+      ]
+   },
+   {
+      "user":{
+         "id":2,
+         "username":"denis"
+      },
+      "liked_users":[
+         {
+            "id":1,
+            "username":"dinesh121991"
+         },
+         {
+            "id":3,
+            "username":"nala"
+         }
+      ]
+   }
+]
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"User is not found in the Likes table",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/user-likes</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new object in UserLikes to represent liked user details</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_likes_post_request" data-toggle="tab">Request</a></li><li><a href="#user_likes_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_likes_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>user</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>liked_users</strong>: <em><span class="required">required</span>(array of integer)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"user": 1, 
+	"liked_users": [3,4]
+}
+</code></pre></div></div><div class="tab-pane" id="user_likes_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>user</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>liked_users</strong>: <em><span class="required">required</span>(array of custom_type.UserResponse)</em><p><strong>Items</strong>: UserResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "user":{
+     "id":1,
+     "username":"dinesh121991"
+  },
+  "liked_users":[
+     {
+        "id":3,
+        "username":"nala"
+     },
+     {
+        "id":4,
+        "username":"josey"
+     }
+  ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"User ID not found",
+    "code":404
+  }
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"User is not found in the Likes table",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_user_likes__id_"><span class="parent">/user-likes</span>/{id}</a> <span class="methods"><a href="#user_likes__id__get"><span class="badge badge_get">get</span></a> <a href="#user_likes__id__put"><span class="badge badge_put">put</span></a> <a href="#user_likes__id__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_user_likes__id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#user_likes__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrive specific User Likes details. ID is the URI parameter in string, or in integer to match User.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_likes__id__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update the User Likes by adding and removing liked users. "add" and "remove" is the string to represent list of users (e.g "3,5,6").</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#user_likes__id__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete the specific UserLike details.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/user-likes</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrive specific User Likes details. ID is the URI parameter in string, or in integer to match User.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_likes__id__get_request" data-toggle="tab">Request</a></li><li><a href="#user_likes__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_likes__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="user_likes__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>user</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>liked_users</strong>: <em><span class="required">required</span>(array of custom_type.UserResponse)</em><p><strong>Items</strong>: UserResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "user":{
+     "id":1,
+     "username":"dinesh121991"
+  },
+  "liked_users":[
+     {
+        "id":3,
+        "username":"nala"
+     },
+     {
+        "id":4,
+        "username":"josey"
+     }
+  ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"User ID not found",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes__id__put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/user-likes</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update the User Likes by adding and removing liked users. "add" and "remove" is the string to represent list of users (e.g "3,5,6").</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_likes__id__put_request" data-toggle="tab">Request</a></li><li><a href="#user_likes__id__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_likes__id__put_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>add</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>remove</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"add":"3,4",
+	"remove":"2"
+}
+</code></pre></div></div><div class="tab-pane" id="user_likes__id__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>user</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></li><li><strong>liked_users</strong>: <em><span class="required">required</span>(array of custom_type.UserResponse)</em><p><strong>Items</strong>: UserResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>username</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "user": {
+    "id": 1,
+    "username": "dinesh121991"
+  },
+  "liked_users": [
+    {
+      "id": 3,
+      "username": "nala"
+    },
+    {
+      "id": 4,
+      "username": "josey"
+    }
+  ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"Request data is not valid",
+    "code":400
+  }
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"User ID not found",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="user_likes__id__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/user-likes</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete the specific UserLike details.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#user_likes__id__delete_request" data-toggle="tab">Request</a></li><li><a href="#user_likes__id__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="user_likes__id__delete_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="user_likes__id__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>error</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>message</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>code</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "error":
+  {
+    "message":"User ID not found",
+    "code":404
+  }
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#questions">/questions</a></li><li><a href="#answers">/answers</a></li><li><a href="#user_answers">/user-answers</a></li><li><a href="#matches">/matches</a></li><li><a href="#user_likes">/user-likes</a></li></ul></div></div></div></div></body></html>

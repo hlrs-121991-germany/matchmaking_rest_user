@@ -98,19 +98,25 @@ def user_like_list(request):
                     (not all(isinstance(x, int) for x in
                              user_like_data["liked_users"]))):
                 raise ValueError('Key: Value is wrong in the data')
+            user = get_object_or_None(authUser, user_like_data["user"])
+            user_like = get_object_or_None(UserLike, user_like_data["user"])
+            if ((user is None) or (user_like is not None)):
+                return JSONError(message="Object is already created for the user",
+                                 code=404)
             user_like_serializer = UserLikeSerializerPost(data=user_like_data)
             if user_like_serializer.is_valid():
                 user_like_serializer.save()
                 return JSONResponse(user_like_serializer.data,
                                     status=status.HTTP_201_CREATED)
+            else:
+                return JSONError(message="Request data is not valid",
+                             code=400, status=status.HTTP_400_BAD_REQUEST)
         except ValueError, ve:
-            print(ve)
             return JSONError(message="Request data is not valid",
                              code=400, status=status.HTTP_400_BAD_REQUEST)
         except Exception, e:
-            print(e)
             return JSONError(message="Object is already created for the user",
-                             code=400, status=status.HTTP_400_BAD_REQUEST)
+                             code=404)
 
 user_like_list.get_serializer = lambda *args: UserLikeSerializerGUI
 

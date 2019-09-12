@@ -12,7 +12,7 @@ types:
   AnswerResponse: 
     properties:
       id:
-        required: false
+        required: true
         type: integer
       text:
         required: true
@@ -53,6 +53,12 @@ types:
         required: true
         type: array
         items: AnswerResponse
+
+  UserRequest:
+    properties:
+        username:
+          required: true
+          type: string
 
   UserResponse:
     properties:

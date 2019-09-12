@@ -51,6 +51,10 @@ def user_list(request):
             return JSONResponse(users_serializer.data)
     elif request.method == 'POST':
         user_data = JSONParser().parse(request)
+        if ('username' not in user_data):
+            return JSONError(message="'username' required in the request data",
+                             code=400, status=status.HTTP_400_BAD_REQUEST)
+
         user_serializer = UserSerializer(data=user_data)
         if user_serializer.is_valid():
             user_serializer.save()

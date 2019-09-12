@@ -1,0 +1,7 @@
+{
+  "error":
+  {
+    "message":"User is not found in the User table",
+    "code":404
+  }
+}

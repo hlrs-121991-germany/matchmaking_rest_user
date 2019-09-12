@@ -9,90 +9,108 @@ protocols: [ HTTP, HTTPS ]
 uses: 
   custom_type: type/match-rest-api-v0-type.raml
 
-/questions:
+/users:
   get:
-    description: Retrive all the Questions
+    description: |
+      Retrive all the users details, or filter it based on the 'user' filter.
+    queryParameters:
+      user:
+        description: Get the user details based on the user filter, 
+          and value would be user id (integer) or user name (string). 
+          It is an optional filter query parameter. Eg. "1", "dinesh"
+        type: string
+        required: false
+        example: "dinesh"
     responses:
       200:
         body:
           application/json:
-            type: custom_type.QuestionResponse[]
-            example: !include sample/questions_get_list_200_v0_res.json
+            type: custom_type.UserResponse[]
+            example: !include sample/user_get_list_200_v0_res.json
+      404:
+        body:
+          application/json:
+            type: custom_type.ErrorResponse
+            example: !include sample/user_error_response_404_v0.json
+
   post:
-    description: Create a new object
+    description: Create a new object in User to represent liked user details
     body:
       application/json:
-        type: custom_type.QuestionRequest
-        example: !include sample/questions_get_single_202_v0_req.json
+        type: custom_type.UserRequest
+        example: !include sample/user_post_202_v0_req.json
     responses:
       200:
         body:
           application/json:
-            type: custom_type.QuestionResponse
-            example: !include sample/questions_get_single_202_v0_res.json
+            type: custom_type.UserResponse
+            example: !include sample/user_get_single_200_v0_res.json
       400:
         body:
           application/json:
             type: custom_type.ErrorResponse
-            example: !include sample/question_error_response_400_v0.json
+            example: !include sample/user_error_response_400_v0.json
 
   /{id}:
     get:
       description: |
-        Retrive specific Question. ID is the URI parameter in string, and 
-        the value is an unique integer (Question Identity).
+        Retrive specific User details. ID is the URI parameter in string,
+        or in integer to match User (Eg. "1", "dinesh").
       responses:
         200:
           body:
             application/json:
-              type: custom_type.QuestionResponse
-              example: !include sample/questions_get_single_200_v0_res.json
+              type: custom_type.UserResponse
+              example: !include sample/user_get_single_200_v0_res.json
         404:
           body:
             application/json:
               type: custom_type.ErrorResponse
-              example: !include sample/question_error_response_404_v0.json
+              example: !include sample/user_error_response_404_v0.json
 
     put:
       description: |
-        Update the Question details partially or completely. ans-add, 
-        ans-remove is the string value to list answer id. Eg. "1,3,4,5,7,8".
+        Update the specific User's username. ID is the URI parameter in string,
+        or in integer to match User (Eg. "1", "dinesh").
       body:
         application/json:
-          type: custom_type.QuestionRequestPut
-          example: !include sample/questions_put_single_202_v0_req.json
+          type: custom_type.UserRequest
+          example: !include sample/user_post_202_v0_req.json
       responses:
         200:
           body:
             application/json:
-              type: custom_type.QuestionResponse
-              example: !include sample/questions_get_single_202_v0_res.json
-        404:
-          body:
-            application/json:
-              type: custom_type.ErrorResponse
-              example: !include sample/question_error_response_404_v0.json
+              type: custom_type.UserResponse
+              example: !include sample/user_get_single_200_v0_res.json
         400:
           body:
             application/json:
               type: custom_type.ErrorResponse
-              example: !include sample/question_error_response_400_v0.json
-
-    delete:
-      description: |
-        Delete the Question.
-      responses:
+              example: !include sample/user_error_response_400_v0.json
         404:
           body:
             application/json:
               type: custom_type.ErrorResponse
-              example: !include sample/question_error_response_404_v0.json
+              example: !include sample/user_error_response_404_v0.json
+
+    delete:
+      description: |
+        Delete the specific User details. If it is successfully deleted,
+        then the "204" response message returned without any response body.
+        ID is the URI parameter in string, or in integer to match
+        User (Eg. "1", "dinesh").
+      responses:
         204:
+        404:
           body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/user_error_response_404_v0.json
 
 /answers:
   get:
-    description: Retrive all the Answers
+    description: |
+      Retrive all the Answers.
     responses:
       200:
         body:
@@ -100,7 +118,7 @@ uses:
             type: custom_type.AnswerResponse[]
             example: !include sample/answers_get_list_200_v0_res.json
   post:
-    description: Create a new object in Answer
+    description: Create a new Answer.
     body:
       application/json:
         type: custom_type.AnswerRequest
@@ -120,8 +138,8 @@ uses:
   /{id}:
     get:
       description: |
-        Retrive specific Answer. ID is the URI parameter in string, and 
-        the value is an unique integer (Answer Identity).
+        Retrive specific Answer. URI parameter is an unique integer value
+        to specify Answer ID. ID here means the primary key of Specific object.
       responses:
         200:
           body:
@@ -136,7 +154,8 @@ uses:
 
     put:
       description: |
-        Update the Answer completely. 
+        Update the specific Answers completely. URI parameter is an unique integer value
+        to specify Answer ID. ID here means the primary key of Specific object.
       body:
         application/json:
           type: custom_type.AnswerRequest
@@ -160,29 +179,127 @@ uses:
 
     delete:
       description: |
-        Delete the Answer.
+        Delete the specific Answer. If it is successfully deleted, then the
+        "204" response message returned without any response body. URI 
+        parameter is an unique integer value to specify Answer ID. ID here 
+        means the primary key of Specific object.
       responses:
+        204:
         404:
           body:
             application/json:
               type: custom_type.ErrorResponse
               example: !include sample/answer_error_response_404_v0.json
-        204:
+
+/questions:
+  get:
+    description: |
+      Retrive all the Questions and its Answers.
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.QuestionResponse[]
+            example: !include sample/questions_get_list_200_v0_res.json
+  post:
+    description: |
+      Create a new Question with the valid request data. Request data will
+      reference answer-id in the "answers" attribute, so Answers (/answers)
+      should be created before referencing.
+    body:
+      application/json:
+        type: custom_type.QuestionRequest
+        example: !include sample/questions_get_single_202_v0_req.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: custom_type.QuestionResponse
+            example: !include sample/questions_get_single_202_v0_res.json
+      400:
+        body:
+          application/json:
+            type: custom_type.ErrorResponse
+            example: !include sample/question_error_response_400_v0.json
+
+  /{id}:
+    get:
+      description: |
+        Retrive specific Question. Specific question will be identified by
+        using URI parameter. URI parameter (ID) is an integer value to specify
+        Question's Identity. ID here means the primary key of Specific object.
+      responses:
+        200:
           body:
+            application/json:
+              type: custom_type.QuestionResponse
+              example: !include sample/questions_get_single_200_v0_res.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/question_error_response_404_v0.json
+
+    put:
+      description: |
+        Update the specific Question details partially or completely. 
+        'ans-add', 'ans-remove' is the list of answer id in 'string' format
+        (Eg. "1,3,4,5,7").
+        Specific question will be identified by
+        using URI parameter. URI parameter (ID) is an integer value to specify
+        Question's Identity.
+        ID here means the primary key of Specific object. Request data will
+        reference answer-id in the "ans-add, ans-remove" attribute, so Answers
+        (/answers) should be created before referencing.
+      body:
+        application/json:
+          type: custom_type.QuestionRequestPut
+          example: !include sample/questions_put_single_202_v0_req.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: custom_type.QuestionResponse
+              example: !include sample/questions_get_single_202_v0_res.json
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/question_error_response_404_v0.json
+        400:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/question_error_response_400_v0.json
+
+    delete:
+      description: |
+        Delete the specific Questions by specifying question ID in the
+        URI parameter. If it is successfully deleted, then the "204" response
+        message returned without any response body.
+        ID here means the primary key of Specific object.
+      responses:
+        204:
+        404:
+          body:
+            application/json:
+              type: custom_type.ErrorResponse
+              example: !include sample/question_error_response_404_v0.json
 
 /user-answers:
   get:
-    description: Retrive all the answered users details
+    description: |
+      Retrive all the users' answer details, or filter it by using the
+      "user" query parameter.
     queryParameters:
       user:
         description: |
           Get the answer based on "user" filter, and value would be user id 
           (integer) or user name (string). It is an optional filter query
-          parameter.
+          parameter (Eg. "1", "dinesh")
         type: string
         required: false
-        example: "dinesh121991"
-        #example: "2"
+        example: "dinesh"
     responses:
       200:
         body:
@@ -190,7 +307,10 @@ uses:
             type: custom_type.UserAnswerResponse[]
             example: !include sample/user_answers_get_list_200_v0_res.json
   post:
-    description: Create a new object in UserAnswer
+    description: |
+      Create a new user's answer. This will reference question-id and
+      answer-id, so Questions and Answers should be created before this. 
+      ID here means the primary key of Specific object.
     body:
       application/json:
         type: custom_type.UserAnswerRequest
@@ -210,8 +330,9 @@ uses:
   /{id}:
     get:
       description: |
-        Retrive specific User Answer. ID is the URI parameter in string, and 
-        the value is an unique integer (Answer Identity).
+        Retrive specific User Answer. ID is the URI parameter, and the value
+        is the primary key of Specific object.  ID value is a string, or 
+        an integer to match Username or userid (Eg. "1", "dinesh").
       responses:
         200:
           body:
@@ -226,7 +347,12 @@ uses:
 
     put:
       description: |
-        Update the Answer completely. 
+        Update the Answer completely. ID is the URI parameter, and the value
+        is the primary key of Specific object.  ID value is a string, or 
+        an integer to match Username or userid (Eg. "1", "dinesh").
+        This will reference question-id and answer-id, so Questions and Answers
+        should be created before this. ID here means the primary key of
+        Specific object.
       body:
         application/json:
           type: custom_type.UserAnswerRequest
@@ -250,33 +376,38 @@ uses:
 
     delete:
       description: |
-        Delete the User Answer.
+        Delete the specific User Answer. If it is successfully deleted, then
+        the "204" response message returned without any response body. ID is
+        the URI parameter, and the value is an unique integer of
+        Specific object. ID value is a string, or an integer to match 
+        Username or userid (Eg. "1", "dinesh").
       responses:
+        204:
         404:
           body:
             application/json:
               type: custom_type.ErrorResponse
               example: !include sample/user_answer_error_response_404_v0.json
-        204:
-          body:
 
 /matches:
   get:
-    description: Retrive all the Answers
+    description: |
+      Retrive all the matches, or filter it based on the 'user' filter.
+      Matchmaking details of specific pair of users retrived by providing 'user'
+      query parameter multiple times (Eg. ?user=value1&user=value2").
     queryParameters:
       user:
         description: |
-          Get the matches based on the first "user" filter (eg. ?user=<value>), 
+          Get the matches based on the first "user" filter (Eg. ?user=<value>), 
           and value would be user id (integer) or user name (string). 
           It would be list of matches by filtering with the value of first user.
           Get the answer based on the multiple "user" filter
-          (eg. ?"user=value1&user=value2"). It would give single match
+          (Eg. ?"user=value1&user=value2"). It would give single match
           element based on the match of both first and second user value.
-          It is an optional filter query parameter.
+          It is an optional filter query parameter (Eg. "1", "dinesh").
         type: string
         required: false
-        example: "dinesh121991"
-        #example: "1"
+        example: "dinesh"
     responses:
       200:
         body:
@@ -288,8 +419,6 @@ uses:
           application/json:
             type: custom_type.ErrorResponse
             example: !include sample/matches_error_response_404_v0.json
-# curl  'http://127.0.0.1:8000/match-api/v0/matches?user=denis&user=dinesh121991'
-# curl  'http://127.0.0.1:8000/match-api/v0/matches?user=denis'
   /{id}:
     get:
       description: |
@@ -308,15 +437,17 @@ uses:
 
 /user-likes:
   get:
-    description: Retrive all the liked users details
+    description: |
+      Retrive all the liked users details, or filter it based on the 
+      'user' filter.
     queryParameters:
       user:
         description: Get the user-likes based on the user filter, 
           and value would be user id (integer) or user name (string). 
-          It is an optional filter query parameter.
+          It is an optional filter query parameter (Eg. "1", "dinesh").
         type: string
         required: false
-        example: "dinesh121991"
+        example: "dinesh"
 
     responses:
       200:
@@ -331,7 +462,10 @@ uses:
             example: !include sample/user_likes_error_response_404_v0.json
 
   post:
-    description: Create a new object in UserLikes to represent liked user details
+    description: |
+      Create a new object in UserLikes to create liked user details.
+      Request data will reference user-id in the "user, liked_users" attribute,
+      so Users (/users) should be created before referencing.
     body:
       application/json:
         type: custom_type.UserLikePostRequest
@@ -357,7 +491,7 @@ uses:
     get:
       description: |
         Retrive specific User Likes details. ID is the URI parameter in string, or 
-        in integer to match User.
+        in integer to match Username or userid (Eg. "1", "dinesh").
       responses:
         200:
           body:
@@ -374,6 +508,8 @@ uses:
       description: |
         Update the User Likes by adding and removing liked users. "add" and
         "remove" is the string to represent list of users (e.g "3,5,6").
+        Request data will reference user-id in the "user, liked_users" attribute,
+        so Users (/users) should be created before referencing.
       body:
         application/json:
           type: custom_type.UserLikeRequestPut
@@ -397,12 +533,14 @@ uses:
 
     delete:
       description: |
-        Delete the specific UserLike details.
+        Delete the specific 'User Like' details. ID is the URI parameter in
+        string, or in integer to match Username or userid (Eg. "1", "dinesh").
+        If it is successfully deleted, then the "204" response message
+        returned without any response body.
       responses:
+        204:
         404:
           body:
             application/json:
               type: custom_type.ErrorResponse
               example: !include sample/user_like_error_response_404_v0.json
-        204:
-          body:

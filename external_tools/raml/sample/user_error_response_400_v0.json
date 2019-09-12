@@ -1,0 +1,7 @@
+{
+  "error":
+  {
+    "message":"'username' required in the request data",
+    "code":400
+  }
+}
