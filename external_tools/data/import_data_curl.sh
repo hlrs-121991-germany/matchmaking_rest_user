@@ -10,6 +10,7 @@ port=$2
 protocol=$3
 
 line=0
+echo "========= Answers Started ========================="
 # Answers Post operations
 url="$protocol://$host:$port/match-api/v0/answers"
 	# "What is your background?" answers: [1,2,3,4,5]
@@ -114,7 +115,9 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Generic Usecase"}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
+let "line++"
+echo "$line,$status_code"
 id=31
 echo "========================= Answers are created ==================================="
 echo "Answer id-$id is created: {'text' : 'Yes'} "
@@ -122,27 +125,38 @@ status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST
 let "line++"
 echo "$line,$status_code"
 echo "Answer id-$id is quering: "
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
+let "line++"
+echo "$line,$status_code"
 
 echo "Answer id-$id is changed: {'text' : 'Yes Yes'} "
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X PUT $url -d '{"text" : "Yes Yes"}')
 let "line++"
 echo "$line,$status_code"
 echo "Answer id-$id is quering: "
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
+let "line++"
+echo "$line,$status_code"
 echo "Answer id-$id changes reverted: {'text' : 'Yes'} "
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X PUT $url -d '{"text" : "Yes"}')
 let "line++"
 echo "$line,$status_code"
 echo "Answer id-$id is quering: "
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
+let "line++"
+echo "$line,$status_code"
 
 echo "Answer id-$id is deleted: {'text' : 'Yes'} "
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE "$url/$id")
+let "line++"
+echo "$line,$status_code"
 echo "Answer id-$id is quering & failed to get"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
+let "line++"
+echo "$line,$status_code"
 echo "========================= Answer are updated for $id ==========================="
-
+line=0
+echo "========= Users Started ========================="
 url="$protocol://$host:$port/match-api/v0/users"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"username": "test1"}')
 let "line++"
@@ -156,7 +170,9 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"username": "test4"}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
+let "line++"
+echo "$line,$status_code"
 id=5
 echo "========================= Users are created ======================================"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"username": "test1"}')
@@ -167,13 +183,21 @@ status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X PUT 
 let "line++"
 echo "$line,$status_code"
 echo "User id-$id is udated"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
+let "line++"
+echo "$line,$status_code"
+let "line++"
+echo "$line,$status_code"
 echo "User id-$id is reverted"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X PUT "$url/$id" -d '{"username": "test1" }')
 let "line++"
 echo "$line,$status_code"
 echo "User id-$id is deleted"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE "$url/$id")
+let "line++"
+echo "$line,$status_code"
+let "line++"
+echo "$line,$status_code"
 echo "========================= User is updated for $id ================================"
 	# "What is your background?" answers: [1,2,3,4,5]
 	# "How do you know hidalgo project?" answers: [6,7]
@@ -189,7 +213,8 @@ echo "========================= User is updated for $id ========================
 	# "What is your HPC experience?"  answers: [22,23,24,25,26]
 	# Which HiDALGO use case is interesting for you? answers: [27,28,29,30]
 
-
+line=0
+echo "========= Questions Started ========================="
 url="$protocol://$host:$port/match-api/v0/questions"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is your background?", "answers":[1,2,3,4,5]}')
 let "line++"
@@ -224,25 +249,40 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Which HiDALGO use case is interesting for you?", answers: [27,28,29,30]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
+let "line++"
+echo "$line,$status_code"
 id=12
 echo "======================== Questions are created perfectly =========================="
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Which HiDALGO use case is interesting for you?", answers: [27,28,29,30]}')
 let "line++"
 echo "$line,$status_code"
 echo "Question ID-$id is created"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
+let "line++"
+echo "$line,$status_code"
+let "line++"
+echo "$line,$status_code"
 echo "Question id-$id is changed to 'Which' ans-add:'31,32', ans-remove:'27,28'"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X PUT "$url/$id" -d '{"text": "Which", "ans-remove":"27,28", "ans-add":"31,32"}')
 let "line++"
 echo "$line,$status_code"
 echo "Question id-$id is updated"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
+let "line++"
+echo "$line,$status_code"
+let "line++"
+echo "$line,$status_code"
 echo "Question id-$id is deleted"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE "$url/$id"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE "$url/$id")
+let "line++"
+echo "$line,$status_code"
+let "line++"
+echo "$line,$status_code"
 
 echo "======================== Questions are updated perfectly =========================="
-
+line=0
+echo "========= User Answers Started ========================="
 url="$protocol://$host:$port/match-api/v0/user-answers"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"user":1,"question":1,"my_answer":1,"my_answer_importance":"Mandatory","their_answer": 1,"their_importance":"Mandatory"}')
 let "line++"
@@ -384,15 +424,25 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X PUT $url/$id -d '{"user":2,"question":11,"my_answer":27,"my_answer_importance":"Mandatory","their_answer": 27,"their_importance":"Mandatory"}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE $url/$id
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id)
+let "line++"
+echo "$line,$status_code"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE $url/$id)
+let "line++"
+echo "$line,$status_code"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id)
+let "line++"
+echo "$line,$status_code"
 echo "================= User Answers $id is updated and deleted ========================="
-
+line=0
+echo "========= Matches Started ========================="
 url="$protocol://$host:$port/match-api/v0/matches"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
+let "line++"
+echo "$line,$status_code"
 echo "================= User Match detail is gathered          =========================="
-
+line=0
+echo "========= User Likes Started ========================="
 url="$protocol://$host:$port/match-api/v0/user-likes"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"user": 1, "liked_users": [2,3]}')
 let "line++"
@@ -406,17 +456,27 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"user": 4, "liked_users": [2,3]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
+let "line++"
+echo "$line,$status_code"
 id=5
 echo "================= User Likes detail is created ===================================="
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"user": 4, "liked_users": [2,3]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id)
+let "line++"
+echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X PUT $url/$id -d '{"add": "1,4", "remove": "2,3"}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE $url/$id
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id)
+let "line++"
+echo "$line,$status_code"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE $url/$id)
+let "line++"
+echo "$line,$status_code"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id)
+let "line++"
+echo "$line,$status_code"
 echo "================= UsLikes $id is updatd and deleted =============================="
