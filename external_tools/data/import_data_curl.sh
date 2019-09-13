@@ -453,13 +453,10 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"user": 3, "liked_users": [2,4]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"user": 4, "liked_users": [2,3]}')
-let "line++"
-echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
 let "line++"
 echo "$line,$status_code"
-id=5
+id=4
 echo "================= User Likes detail is created ===================================="
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"user": 4, "liked_users": [2,3]}')
 let "line++"
@@ -479,4 +476,7 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url/$id)
 let "line++"
 echo "$line,$status_code"
-echo "================= UsLikes $id is updatd and deleted =============================="
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"user": 4, "liked_users": [2,3]}')
+let "line++"
+echo "$line,$status_code"
+echo "================= User Likes $id is updated and deleted =============================="
