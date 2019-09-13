@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # REST API deployment details
+protocol="http"
 host="127.0.0.1"
 port=80
-protocol="http"
 
-host=$1
-port=$2
-protocol=$3
+protocol=$1
+host=$2
+port=$3
 
 line=0
 echo "========= Answers Started ========================="
