@@ -13,7 +13,7 @@ line=0
 echo "========= Answers Started ========================="
 # Answers Post operations
 url="$protocol://$host:$port/match-api/v0/answers"
-	# "What is your background?" answers: [1,2,3,4,5]
+	# "What is your background?" "answers:" [1,2,3,4,5]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Natural Science (Eg. Physics, Chemistry, Biology, etc)"}')
 let "line++"
 echo "$line,$status_code"
@@ -29,14 +29,14 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Business & Sales"}')
 let "line++"
 echo "$line,$status_code"
-	# "How do you know hidalgo project?" answers: [6,7]
+	# "How do you know hidalgo project?" "answers:" [6,7]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Internet"}')
 let "line++"
 echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Referal from my friends"}')
 let "line++"
 echo "$line,$status_code"
-	# "What is your profession?" answers: [8,9,10,11]
+	# "What is your profession?" "answers:" [8,9,10,11]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Student"}')
 let "line++"
 echo "$line,$status_code"
@@ -49,7 +49,7 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Business & Sales"}')
 let "line++"
 echo "$line,$status_code"
-	# "What is an interest with hidalgo" answers: [12,13,14,15]
+	# "What is an interest with hidalgo" "answers:" [12,13,14,15]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "HPC Simulation Programming"}')
 let "line++"
 echo "$line,$status_code"
@@ -66,14 +66,14 @@ echo "$line,$status_code"
 	# "Are you part of HiDALGO project?"
 	# Do you need help from HiDALGO to improve your small and medium scale business?
 	# Are you familiar with the coupled simulation?
-	# answers: [16,17]
+	# "answers:" [16,17]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Yes"}')
 let "line++"
 echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "No"}')
 let "line++"
 echo "$line,$status_code"
-	# "In which topic do you need a help?" answers: [18,19,20,21]
+	# "In which topic do you need a help?" "answers:" [18,19,20,21]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Matchematical Model for Coupled Simulation"}')
 let "line++"
 echo "$line,$status_code"
@@ -86,7 +86,7 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Run Use Case in a custom infrastructure"}')
 let "line++"
 echo "$line,$status_code"
-	# "What is your HPC experience?"  answers: [22,23,24,25,26]
+	# "What is your HPC experience?"  "answers:" [22,23,24,25,26]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Install & Benchmark HPC application"}')
 let "line++"
 echo "$line,$status_code"
@@ -102,7 +102,7 @@ echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Very Beginner"}')
 let "line++"
 echo "$line,$status_code"
-	# Which HiDALGO use case is interesting for you? answers: [27,28,29,30]
+	# Which HiDALGO use case is interesting for you? "answers:" [27,28,29,30]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Urban Air Pollution (UAP) Pilot"}')
 let "line++"
 echo "$line,$status_code"
@@ -199,19 +199,19 @@ echo "$line,$status_code"
 let "line++"
 echo "$line,$status_code"
 echo "========================= User is updated for $id ================================"
-	# "What is your background?" answers: [1,2,3,4,5]
-	# "How do you know hidalgo project?" answers: [6,7]
-	# "What is your profession?" answers: [8,9,10,11]
-	# "What is an interest with hidalgo" answers: [12,13,14,15]
+	# "What is your background?" "answers:" [1,2,3,4,5]
+	# "How do you know hidalgo project?" "answers:" [6,7]
+	# "What is your profession?" "answers:" [8,9,10,11]
+	# "What is an interest with hidalgo" "answers:" [12,13,14,15]
 		# Yes or No Questions
 	# "Do you need help from HiDALGO project professionals?"
 	# "Are you part of HiDALGO project?"
 	# Do you need help from HiDALGO to improve your small and medium scale business?
 	# Are you familiar with the coupled simulation?
-		# answers: [16,17]
-	# "In which topic do you need a help?" answers: [18,19,20,21]
-	# "What is your HPC experience?"  answers: [22,23,24,25,26]
-	# Which HiDALGO use case is interesting for you? answers: [27,28,29,30]
+		# "answers:" [16,17]
+	# "In which topic do you need a help?" "answers:" [18,19,20,21]
+	# "What is your HPC experience?"  "answers:" [22,23,24,25,26]
+	# Which HiDALGO use case is interesting for you? "answers:" [27,28,29,30]
 
 line=0
 echo "========= Questions Started ========================="
@@ -219,34 +219,34 @@ url="$protocol://$host:$port/match-api/v0/questions"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is your background?", "answers":[1,2,3,4,5]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "How do you know hidalgo project?", answers: [6,7]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "How do you know hidalgo project?", "answers": [6,7]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is your profession?", answers: [8,9,10,11]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is your profession?", "answers": [8,9,10,11]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is an interest with hidalgo", answers: [12,13,14,15]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is an interest with hidalgo", "answers": [12,13,14,15]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Do you need help from HiDALGO project professionals?", answers: [16,17]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Do you need help from HiDALGO project professionals?", "answers": [16,17]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Are you part of HiDALGO project?", answers: [16,17]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Are you part of HiDALGO project?", "answers": [16,17]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Do you need help from HiDALGO to improve your small and medium scale business?", answers: [16,17]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Do you need help from HiDALGO to improve your small and medium scale business?", "answers": [16,17]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Are you familiar with the coupled simulation?", answers: [16,17]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Are you familiar with the coupled simulation?", "answers": [16,17]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "In which topic do you need a help?", answers: [18,19,20,21]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "In which topic do you need a help?", "answers": [18,19,20,21]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is your HPC experience?", answers: [22,23,24,25,26]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is your HPC experience?", "answers": [22,23,24,25,26]}')
 let "line++"
 echo "$line,$status_code"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Which HiDALGO use case is interesting for you?", answers: [27,28,29,30]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Which HiDALGO use case is interesting for you?", "answers": [27,28,29,30]}')
 let "line++"
 echo "$line,$status_code"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
@@ -254,7 +254,7 @@ let "line++"
 echo "$line,$status_code"
 id=12
 echo "======================== Questions are created perfectly =========================="
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Which HiDALGO use case is interesting for you?", answers: [27,28,29,30]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Which HiDALGO use case is interesting for you?", "answers": [27,28,29,30]}')
 let "line++"
 echo "$line,$status_code"
 echo "Question ID-$id is created"
