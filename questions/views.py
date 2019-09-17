@@ -110,7 +110,7 @@ def question_detail(request, pk):
             for ans_a in ans_add:
                 answer_add = get_object_or_None(Answer, pk=ans_a)
                 if answer_add is None:
-                    raise ValueError("{0} is not valid in 'ans-add'".format(user_a))
+                    raise ValueError("{0} is not valid in 'ans-add'".format(ans_a))
 
             for ans_r in ans_rmv:
                 answer_remove = Answer.objects.get(pk=ans_r)

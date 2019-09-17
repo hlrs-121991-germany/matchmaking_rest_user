@@ -8,6 +8,8 @@ from . import views as root_views
 from rest_framework.schemas import get_schema_view
 from rest_framework_raml.renderers import RAMLRenderer, RAMLDocsRenderer
 from rest_framework_swagger.views import get_swagger_view
+from django.conf.urls.static import static
+from django.conf import settings
 
 title='Matchmaking REST API'
 
@@ -23,9 +25,9 @@ raml_schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    #url(r'^$', raml_schema_view),
     #url(r'^$', base_schema_view),
-    url(r'^$', swagger_schema_view),
+    url(r'swagger^$', swagger_schema_view),
+    url(r'^$', raml_schema_view),
     #url(r'^$', root_views.api_root_list),
     url(r'^match-api$',
         root_views.api_match_list),
@@ -73,4 +75,4 @@ urlpatterns = [
         user_views.user_detail),
 
     url(r'^admin101/', include(admin.site.urls)),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
