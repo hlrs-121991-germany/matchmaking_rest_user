@@ -13,7 +13,7 @@ class QuestionManager(models.Manager):
         return qs
 
 class Question(models.Model):
-    text = models.TextField()
+    text = models.TextField(max_length=300, unique=True)
     answers = models.ManyToManyField('Answer')
     active = models.BooleanField(default=True)
     draft = models.BooleanField(default=False)
@@ -27,7 +27,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
 #    question = models.ForeignKey(Question)
-    text = models.CharField(max_length=120)
+    text = models.CharField(max_length=120, unique=True)
 #    ans-add = JSONField()
 #    ans-remove = JSONField()
     active = models.BooleanField(default=True)

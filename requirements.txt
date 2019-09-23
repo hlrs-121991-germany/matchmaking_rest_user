@@ -7,7 +7,7 @@ Click==7.0
 coreapi==2.3.3
 coreschema==0.0.4
 cryptography==2.7
-Django==1.11.22
+Django>=1.11.23
 django-annoying==0.10.4
 django-crispy-forms==1.7.2
 django-filter==2.0.0
@@ -20,7 +20,7 @@ django-rest-swagger==2.2.0
 djangorestframework==3.9.4
 enum34==1.1.6
 gunicorn==19.9.0
-httpie==1.0.2
+httpie>=1.0.3
 idna==2.8
 ipaddress==1.0.22
 itypes==1.1.0

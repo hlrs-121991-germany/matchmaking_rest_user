@@ -22,7 +22,7 @@ class UserLikeManager(models.Manager):
         return mutual_users
 
 class UserLike(models.Model):
-    user = models.OneToOneField(authUser, related_name='user')
+    user = models.OneToOneField(authUser, related_name='user', unique=True)
     liked_users = models.ManyToManyField(authUser, related_name='liked_users', blank=True)
 #    add = JSONField(load_kwargs={'object_pairs_hook': collections.OrderedDict})
 #    remove = JSONField(load_kwargs={'object_pairs_hook': collections.OrderedDict})

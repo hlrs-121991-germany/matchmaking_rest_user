@@ -1,7 +1,10 @@
 import collections
+import inspect
 from django.shortcuts import render
 from annoying.functions import get_object_or_None
 from django.http import HttpResponse
+from rest_framework.views import APIView
+from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 #from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
@@ -18,6 +21,9 @@ from rest_framework_swagger import renderers
 from likes.serializers import (UserLikeSerializerGet, CurrentUserSerializer,
                                UserLikeSerializerPost, UserLikeSerializerGUI)
 
+def lineno():
+    """Returns the current line number in our program."""
+    return inspect.currentframe().f_back.f_lineno
 
 class JSONResponse(HttpResponse):
     def __init__(self, data, **kwargs):
@@ -25,10 +31,21 @@ class JSONResponse(HttpResponse):
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
 
-def JSONError(message=None, code=404, status=status.HTTP_404_NOT_FOUND):
+def JSONError(message=None, code=404):
+    stat = status.HTTP_404_NOT_FOUND
+    if (code == 404):
+        stat =status.HTTP_404_NOT_FOUND
+    elif (code == 400):
+        stat =status.HTTP_400_BAD_REQUEST
+    elif (code == 500):
+        stat =status.HTTP_500_BAD_REQUEST
+    else:
+        code=404
+        stat = status.HTTP_404_NOT_FOUND
+
     error_msg = { "error": {"code": code, "message": message} }
     error_data = collections.OrderedDict(error_msg)
-    return JSONResponse(error_data, status=status)
+    return JSONResponse(error_data, status=stat)
 
 #       print(user_likes_serializer.data)
 #        print(type(user_likes_serializer.data))
@@ -44,22 +61,25 @@ def JSONError(message=None, code=404, status=status.HTTP_404_NOT_FOUND):
 #                liked_users_name.append(user.username)
 #        user_likes_json = { "user": user_name, "liked_users": liked_users_name}
 
-class CustomAutoSchema(AutoSchema):
-    pass
-
-@csrf_exempt
-@api_view(['GET', 'POST'])
-@schema(CustomAutoSchema())
-@renderer_classes([renderers.OpenAPIRenderer, renderers.SwaggerUIRenderer])
-def user_like_list(request):
-    if request.method == 'GET':
+class UserLikeList(APIView):
+    """
+    List all UserLikes, or create a new UserLike.
+    """
+    def get(self, request, format=None):
         username_list = request.GET.getlist('user')
         user_likes = None
         user_likes_serializer = None
         if (len(username_list) == 0):
-            user_likes = UserLike.objects.all()
-            user_likes_serializer = UserLikeSerializerGet(user_likes, many=True)
-            return JSONResponse(user_likes_serializer.data)
+            try:
+                user_likes = UserLike.objects.all()
+                user_likes_serializer = UserLikeSerializerGet(user_likes,
+                                                              many=True)
+                return JSONResponse(user_likes_serializer.data)
+            except Exception as e:
+                print(e)
+                print("Line No: {0}".format(lineno()))
+                return JSONError(message="UserLike is not found",
+                                 code=404)
 
         user = None
         #User = get_user_model()
@@ -69,15 +89,18 @@ def user_like_list(request):
         except ValueError:
             user = get_object_or_None(authUser, username=username_list[0])
         if user is None:
+            print("Line No: {0}".format(lineno()))
             return JSONError(message="User ID not Found", code=404)
 
         try:
             user_likes = UserLike.objects.filter(user=user.id)
         except UserLike.DoesNotExist:
+            print("Line No: {0}".format(lineno()))
             return JSONError(message=
                              "User is not found in the Likes table",
                              code=404)
         if not user_likes.exists():
+            print("Line No: {0}".format(lineno()))
             return JSONError(message=
                              "User is not found in the Likes table",
                              code=404)
@@ -86,9 +109,10 @@ def user_like_list(request):
         if likes_serializer:
             return JSONResponse(likes_serializer.data)
         else:
-            return JSONError(message= "Matches not Found", code=404)
+            print("Line No: {0}".format(lineno()))
+            return JSONError(message= "UserLikes not Found", code=500)
 
-    elif request.method == 'POST':
+    def post(self, request, format=None):
         try:
             user_like_data = JSONParser().parse(request)
             if (("user" not in user_like_data) or
@@ -100,10 +124,11 @@ def user_like_list(request):
                 raise ValueError('Key: Value is wrong in the data')
             user = get_object_or_None(authUser, id=user_like_data["user"])
             if (user is None):
-                return JSONError(message="User is not found",
-                                 code=404)
+                print("Line No: {0}".format(lineno()))
+                return JSONError(message="User is not found", code=404)
             user_like = get_object_or_None(UserLike, user=user_like_data["user"])
             if (user_like is not None):
+                print("Line No: {0}".format(lineno()))
                 return JSONError(message="Object is already created for the user",
                                  code=404)
 
@@ -113,54 +138,61 @@ def user_like_list(request):
                 return JSONResponse(user_like_serializer.data,
                                     status=status.HTTP_201_CREATED)
             else:
-                return JSONError(message="Request data is not valid",
-                             code=400, status=status.HTTP_400_BAD_REQUEST)
-        except ValueError, ve:
-            return JSONError(message="Request data is not valid",
-                             code=400, status=status.HTTP_400_BAD_REQUEST)
-        except Exception, e:
-            return JSONError(message="Object is already created for the user",
-                             code=404)
+                print("Line No: {0}".format(lineno()))
+                return JSONError(message="Request data is not valid", code=400)
+        except ValueError as ve:
+            print("Line No: {0}".format(lineno()))
+            return JSONError(message="Request data is not valid", code=400)
+        except Exception as e:
+            print("Line No: {0}".format(lineno()))
+            return JSONError(message="UserLike is not created", code=500)
 
-user_like_list.get_serializer = lambda *args: UserLikeSerializerGUI
+class UserLikeDetail(APIView):
+    """
+    Retrieve, update or delete a UserLike instance.
+    """
+    def get_object(self, pk):
+        user_like = None
+        user_id = -1
+        try:
+            user_id = int(pk)
+            #User = get_user_model()
+            user_details = get_object_or_None(authUser, id=pk)
+        except ValueError:
+            #User = get_user_model()
+            user_details = get_object_or_None(authUser, username=pk)
+        if user_details is not None:
+            user_id = user_details.id
+        else:
+            return {"message":"User ID not found", "code":404}
+        try:
+            user_like = UserLike.objects.get(user=user_details)
+        except UserLike.DoesNotExist:
+            print("Line No: {0}".format(lineno()))
+            return {"message":"User is not found in the user likes table",
+                    "code":404}
+        return user_like
 
-@csrf_exempt
-@api_view(['GET', 'PUT', 'DELETE'])
-def user_like_detail(request, pk):
-    user_like = None
-    user_id = -1
-    try:
-        user_id = int(pk)
-        #User = get_user_model()
-        user_details = get_object_or_None(authUser, id=pk)
-    except ValueError:
-        #User = get_user_model()
-        user_details = get_object_or_None(authUser, username=pk)
-    if user_details is not None:
-        user_id = user_details.id
-    else:
-        return JSONError(message="User ID not found",
-                         code=404)
-    print(user_id)
-    try:
-        user_like = UserLike.objects.get(user=user_details)
-    except UserLike.DoesNotExist:
-        return JSONError(message="User is not found in the likes table",
-                         code=404)
-    if request.method == 'GET':
-        if user_like is not None:
+    def get(self, request, pk, format=None):
+        user_like = self.get_object(pk)
+        if (type(user_like) is dict):
+            print("Line No: {0}".format(lineno()))
+            return JSONError(user_like["message"], user_like["code"])
+        try:
             user_like_serializer = UserLikeSerializerGet(user_like, many=False)
             return JSONResponse(user_like_serializer.data)
-        else:
-            return JSONError(message="User ID not found",
-                             code=404)
-    elif request.method == 'PUT':
-        user_add = []
-        user_rmv = []
-        if user_like is None:
-            return JSONError(message="User ID not found",
-                             code=404)
+        except Exception as e:
+            print("Line No: {0}".format(lineno()))
+            return JSONError("UserLike is not found", code=500)
+
+    def put(self, request, pk, format=None):
+        user_like = self.get_object(pk)
+        if (type(user_like) is dict):
+            print("Line No: {0}".format(lineno()))
+            return JSONError(user_like["message"], user_like["code"])
         try:
+            user_add = []
+            user_rmv = []
             user_like_data = JSONParser().parse(request)
             if (("add" not in user_like_data) and
                     ("remove" not in user_like_data)):
@@ -202,22 +234,24 @@ def user_like_detail(request, pk):
 
             user_like_serializer = UserLikeSerializerGet(user_like, many=False)
             return JSONResponse(user_like_serializer.data)
-        except ValueError, ve:
+        except ValueError as ve:
             print(ve)
-            return JSONError(message="Request data is not valid",
-                             code=400, status=status.HTTP_400_BAD_REQUEST)
-        except Exception, e:
+            print("Line No: {0}".format(lineno()))
+            return JSONError(message="Request data is not valid", code=400)
+        except Exception as e:
             print(e)
-            return JSONError(message="Object is not updated",
-                             code=403, status=status.HTTP_403_FORBIDDEN)
-    elif request.method == 'DELETE':
-        if user_like is None:
-            return JSONError(message="User ID not found",
-                             code=404)
+            print("Line No: {0}".format(lineno()))
+            return JSONError(message="UserLike is not updated", code=403)
+
+    def delete(self, request, pk, format=None):
+        user_like = self.get_object(pk)
+        if (type(user_like) is dict):
+            print("Line No: {0}".format(lineno()))
+            return JSONError(user_like["message"], user_like["code"])
         else:
             try:
                 user_like.delete()
                 return HttpResponse(status=status.HTTP_204_NO_CONTENT)
             except:
-                return JSONError(message="Object is not deleted",
-                                 code=403, status=status.HTTP_403_FORBIDDEN)
+                print("Line No: {0}".format(lineno()))
+                return JSONError(message="UserLike is not deleted", code=403)

@@ -1,8 +1,11 @@
 import collections
+import inspect
 from django.shortcuts import render, get_object_or_404
 from annoying.functions import get_object_or_None
 #from django.contrib.auth import get_user_model
 from django.http import HttpResponse
+from rest_framework.views import APIView
+from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.renderers import JSONRenderer
@@ -20,10 +23,25 @@ from matches.serializers import LocationMatchSerializer
 
 match_update = False
 
+def lineno():
+    """Returns the current line number in our program."""
+    return inspect.currentframe().f_back.f_lineno
+
 def JSONError(message=None, code=404):
+    stat = status.HTTP_404_NOT_FOUND
+    if (code == 404):
+        stat = status.HTTP_404_NOT_FOUND
+    elif (code == 400):
+        stat = status.HTTP_400_BAD_REQUEST
+    elif (code == 500):
+        stat = status.HTTP_500_INTERNAL_SERVER_ERROR
+    else:
+        code=404
+        stat = status.HTTP_404_NOT_FOUND
+
     error_msg = { "error": {"code": code, "message": message} }
     error_data = collections.OrderedDict(error_msg)
-    return JSONResponse(error_data, status=status.HTTP_404_NOT_FOUND)
+    return JSONResponse(error_data, status=stat)
 
 class JSONResponse(HttpResponse):
     def __init__(self, data, **kwargs):
@@ -32,10 +50,9 @@ class JSONResponse(HttpResponse):
         super(JSONResponse, self).__init__(content, **kwargs)
 
 
-@csrf_exempt
-@api_view(['GET'])
-def match_list(request):
-    if request.method == 'GET':
+@method_decorator(csrf_exempt, name='dispatch')
+class MatchList(APIView):
+    def get(self, request, format=None):
         username_list = request.GET.getlist('user')
         matches = None
         matches_serializer = None
@@ -46,7 +63,6 @@ def match_list(request):
         else:
             match_update = True
             print("match_update is False")
-            #User = get_user_model()
             UserQuerySet = authUser.objects.all()
             for user_a in UserQuerySet:
                 for user_b in UserQuerySet:
@@ -132,16 +148,35 @@ def match_list(request):
         else:
             return JSONError(message= "Matches not Found", code=404)
 
-@csrf_exempt
-def match_detail(request, pk):
-    try:
-        Match.objects.update_all()
-        match = Match.objects.get(pk=pk)
-    except Match.DoesNotExist:
-        return JSONError(message=
-                         "Match is not found in the Matches table",
-                         code=404)
-    if request.method == 'GET':
+@method_decorator(csrf_exempt, name='dispatch')
+class MatchDetail(APIView):
+    """
+    Retrieve, update or delete a Match instance.
+    """
+    def get_object(self, pk):
+        try:
+            #Match.objects.update_all()
+            #match = Match.objects.get(pk=pk)
+            match = get_object_or_None(Match, pk=pk)
+            if match is None:
+                message="Match is not found in the Matches table"
+                return {"message": message, "code":404}
+            else:
+                match.do_match()
+                match.save()
+                return match
+        except Match.DoesNotExist:
+            message="Match is not found in the Matches table"
+            return {"message": message, "code":500}
+
+    def get(self, request, pk, format=None):
+        match = self.get_object(pk)
+        if (isinstance(match, dict) and
+            ("message" in match) and ("code" in match) and
+            (isinstance(match["message"], (str, unicode))) and
+            (isinstance(match["code"], int))):
+            print("Line No: {0}".format(lineno()))
+            return JSONError(match["message"], match["code"])
         match_serializer = MatchSerializer(match)
         return JSONResponse(match_serializer.data)
 

@@ -13,7 +13,7 @@ line=0
 function check_status()
 {
 	let "line=$1+1"
-	if [ $2 -gt 400 ] && [ $2 -lt 600 ]; then
+	if [ $2 -gt 399 ] && [ $2 -lt 600 ]; then
 		echo "$line,$2"
 	fi
 }
@@ -37,14 +37,14 @@ status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST
 check_status $line $status_code
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Referal from my friends"}')
 check_status $line $status_code
-	# "What is your profession?" "answers:" [8,9,10,11]
+	# "What is your profession?" "answers:" [5,8,9,10]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Student"}')
 check_status $line $status_code
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Industry Researcher (Corporate Professionals)"}')
 check_status $line $status_code
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Academic Researcher (Phd, Postdoc, Professors)"}')
 check_status $line $status_code
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Business & Sales"}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "11 Dummy Answer"}')
 check_status $line $status_code
 	# "What is an interest with hidalgo" "answers:" [12,13,14,15]
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "HPC Simulation Programming"}')
@@ -97,8 +97,8 @@ status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
 check_status $line $status_code
 id=31
 echo "========================= Answers are created ==================================="
-echo "Answer id-$id is created: {'text' : 'Yes'} "
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Yes"}')
+echo "Answer id-$id is created: {'text' : 'Yess'} "
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text" : "Yess"}')
 check_status $line $status_code
 echo "Answer id-$id is quering: "
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
@@ -139,7 +139,7 @@ status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
 check_status $line $status_code
 id=5
 echo "========================= Users are created ======================================"
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"username": "test1"}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"username": "test"}')
 check_status $line $status_code
 echo "User id-$id is changed to test11"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X PUT "$url/$id" -d '{"username": "test11" }')
@@ -153,10 +153,13 @@ check_status $line $status_code
 echo "User id-$id is deleted"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X DELETE "$url/$id")
 check_status $line $status_code
+echo "User id-$id is retrived after delete"
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
+check_status $line $status_code
 echo "========================= User is updated for $id ================================"
 	# "What is your background?" "answers:" [1,2,3,4,5]
 	# "How do you know hidalgo project?" "answers:" [6,7]
-	# "What is your profession?" "answers:" [8,9,10,11]
+	# "What is your profession?" "answers:" [5,8,9,10]
 	# "What is an interest with hidalgo" "answers:" [12,13,14,15]
 		# Yes or No Questions
 	# "Do you need help from HiDALGO project professionals?"
@@ -175,7 +178,7 @@ status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST
 check_status $line $status_code
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "How do you know hidalgo project?", "answers": [6,7]}')
 check_status $line $status_code
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is your profession?", "answers": [8,9,10,11]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is your profession?", "answers": [5,8,9,10]}')
 check_status $line $status_code
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "What is an interest with hidalgo", "answers": [12,13,14,15]}')
 check_status $line $status_code
@@ -197,7 +200,7 @@ status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent $url)
 check_status $line $status_code
 id=12
 echo "======================== Questions are created perfectly =========================="
-status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Which HiDALGO use case is interesting for you?", "answers": [27,28,29,30]}')
+status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent -X POST $url -d '{"text": "Which HiDALGO use case is interesting for UUU?", "answers": [27,28,29,30]}')
 check_status $line $status_code
 echo "Question ID-$id is created"
 status_code=$(curl --write-out %{http_code} -Ls --out /dev/null --silent "$url/$id")
