@@ -1,7 +1,8 @@
 import datetime
 from decimal import Decimal
 from django.conf import settings
-from django.core.urlresolvers import reverse
+#from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.utils import timezone
 from django.db.models.signals import post_save, pre_save
@@ -47,7 +48,8 @@ pre_save.connect(pre_save_location, sender=Location)
 class Employer(models.Model):
     name =  models.CharField(max_length=250)
     slug = models.SlugField()
-    location = models.ForeignKey(Location, null=True, blank=True) # is_city
+    location = models.ForeignKey(Location, null=True, blank=True,
+                                 on_delete=models.PROTECT) # is_city
 
     def __unicode__(self):
         return self.name
@@ -139,9 +141,9 @@ class MatchManager(models.Manager):
 
 
 class Match(models.Model):
-    user_a = models.ForeignKey(authUser,
+    user_a = models.ForeignKey(authUser, on_delete=models.PROTECT,
                                related_name='match_user_a')
-    user_b = models.ForeignKey(authUser,
+    user_b = models.ForeignKey(authUser, on_delete=models.PROTECT,
                                related_name='match_user_b')
     match_decimal = models.DecimalField(decimal_places=8, max_digits=16,
                                         default=0.00)
@@ -216,8 +218,8 @@ class PositionMatchManager(models.Manager):
 
 
 class PositionMatch(models.Model):
-    user = models.ForeignKey(authUser)
-    job = models.ForeignKey(Job)
+    user = models.ForeignKey(authUser, on_delete=models.PROTECT)
+    job = models.ForeignKey(Job, on_delete=models.PROTECT)
     hidden = models.BooleanField(default=False)
     liked = models.NullBooleanField()
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -241,8 +243,8 @@ class PositionMatch(models.Model):
 
 
 class EmployerMatch(models.Model):
-    user = models.ForeignKey(authUser)
-    employer = models.ForeignKey(Employer)
+    user = models.ForeignKey(authUser, on_delete=models.PROTECT)
+    employer = models.ForeignKey(Employer, on_delete=models.PROTECT)
     hidden = models.BooleanField(default=False)
     liked = models.NullBooleanField()
 
@@ -256,8 +258,8 @@ class EmployerMatch(models.Model):
 
 
 class LocationMatch(models.Model):
-    user = models.ForeignKey(authUser)
-    location = models.ForeignKey(Location)
+    user = models.ForeignKey(authUser, on_delete=models.PROTECT)
+    location = models.ForeignKey(Location, on_delete=models.PROTECT)
     hidden = models.BooleanField(default=False)
     liked = models.NullBooleanField()
 

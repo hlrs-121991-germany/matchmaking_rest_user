@@ -23,6 +23,10 @@ from matches.serializers import LocationMatchSerializer
 
 match_update = False
 
+import sys
+if sys.version_info[0] >= 3:
+    unicode = str
+
 def lineno():
     """Returns the current line number in our program."""
     return inspect.currentframe().f_back.f_lineno
@@ -71,11 +75,12 @@ class MatchList(APIView):
 
                     match_obj, match_stat = Match.objects.get_or_create_match(
                         user_a, user_b)
-                    if match_stat is True:
-                        match_obj.do_match()
-                        match_obj.save()
-                    else:
-                        match_obj.do_match()
+                    match_obj.do_match()
+                    #if match_stat is True:
+                    #    match_obj.do_match()
+                    #    match_obj.save()
+                    #else:
+                    #    match_obj.do_match()
 
         if (len(username_list) == 2):
             user_a = None
@@ -97,17 +102,18 @@ class MatchList(APIView):
                 user_b = get_object_or_None(authUser, username=username_list[1])
             if user_b is None:
                 return JSONError(message= "Second User ID not Found", code=404)
-            user_b = user_b.id
+            user_b=user_b.id
 
             if (user_a == user_b):
                 return JSONError(message= "First & Second User ID are same", code=404)
             match_obj, match_stat = Match.objects.get_or_create_match(user_a,
                                                                       user_b)
-            if match_stat is True:
-                match_obj.do_match()
-                match_obj.save()
-            else:
-                match_obj.do_match()
+            match_obj.do_match()
+            #if match_stat is True:
+            #    match_obj.do_match()
+            #    match_obj.save()
+            #else:
+            #    match_obj.do_match()
             matches = match_obj
             matches_serializer = MatchSerializer(matches, many=False)
         elif (len(username_list) == 1):
@@ -120,6 +126,23 @@ class MatchList(APIView):
                 user_a = get_object_or_None(authUser, username=username_list[0])
             if user_a is None:
                 return JSONError(message="User ID not Found", code=404)
+
+            try:
+                matches = Match.objects.filter(user_a=user_a.id)
+                match_union = Match.objects.filter(user_b=user_a)
+                matches = matches.union(match_union)
+            except Match.DoesNotExist:
+                return JSONError(message=
+                                 "User is not found in the Matches table",
+                                 code=404)
+
+            if not matches.exists():
+                return JSONError(message=
+                                 "User is not found in the Matches table",
+                                 code=404)
+
+            for match_obj in matches:
+                match_obj.do_match()
 
             try:
                 matches = Match.objects.filter(user_a=user_a.id)

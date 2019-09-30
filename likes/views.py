@@ -21,6 +21,10 @@ from rest_framework_swagger import renderers
 from likes.serializers import (UserLikeSerializerGet, CurrentUserSerializer,
                                UserLikeSerializerPost, UserLikeSerializerGUI)
 
+import sys
+if sys.version_info[0] >= 3:
+    unicode = str
+
 def lineno():
     """Returns the current line number in our program."""
     return inspect.currentframe().f_back.f_lineno

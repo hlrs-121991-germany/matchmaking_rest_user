@@ -70,5 +70,5 @@ urlpatterns = [
     url(r'^match-api/v0/users/(?P<pk>[a-zA-Z0-9_.-]+)$',
         user_views.UserDetail.as_view()),
 
-    url(r'^admin101/', include(admin.site.urls)),
+    url(r'^admin101/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
