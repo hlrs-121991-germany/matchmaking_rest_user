@@ -9,7 +9,8 @@ from django.db.models.signals import post_save, pre_save
 
 from matches.signals import user_matches_update
 from matches.utils import get_match
-from users.models import User as authUser
+# from users.models import User as authUser
+from django.contrib.auth.models import User as authUser
 
 #User = settings.AUTH_USER_MODEL
 

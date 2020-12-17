@@ -17,6 +17,7 @@ from users.models import User as authUser
 #from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from annoying.functions import get_object_or_None
+from rest_framework.permissions import IsAuthenticated
 from questions.serializers import (QuestionSerializer, AnswerSerializer,
                                    QuestionSerializerPost,
                                    QuestionSerializerPut,
@@ -60,6 +61,7 @@ class QuestionList(APIView):
     """
     List all Questions, or create a new Question.
     """
+    permission_classes = [IsAuthenticated]
     def get(self, request, format=None):
         try:
             questions = Question.objects.all()

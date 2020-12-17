@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from django.urls import path
 from django.contrib import admin
 from questions import views as quest_views
 from matches import views as match_views
@@ -69,6 +70,7 @@ urlpatterns = [
         user_views.UserList.as_view()),
     url(r'^match-api/v0/users/(?P<pk>[a-zA-Z0-9_.-]+)$',
         user_views.UserDetail.as_view()),
+#    path('oidc/', include('mozilla_django_oidc.urls')),
 
-    url(r'^admin101/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
